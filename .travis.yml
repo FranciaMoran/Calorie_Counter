@@ -1,2 +1,9 @@
 language: node_js
 node_js: node
+deploy:
+  provider: heroku
+  api_key:
+    secure: tLVw9mCE9/6crf3imqbdZwZVvJvBFmKF5Ik0KHFVgIZNUMWec6BcMNdUZjZHYw+FzGDZE4bnjwhZ/4C6RK5H5P844cafMRs/U94aQlyhLIgXJDuVQDwWseBXq9wiff8IImdTfavR/QpU7VgMfxXQfm57OGCfAGdsAblGuvDTFkM3J44124i1n00b0LKtUlpPKjqMCde7HRWTBAuuyrHbnryWE1oNZ9f/gulYLwzRUjvgJNtpX26t7G5nho2y+tQHRBuc4j8Fhat5Eh5xKRNW7+iA71unhEohKptE0eHmBSRt91R+6Gwiz6SKNHhAV8eCGu61Gku3N7bPziQfqJMcNg9Esn9otgX9svI+T+cHVRp90JGJQ6YKoVpueFIp5XbC7thINDdi+whHzDCj6gfaM13PAzdo+RrgM3+EMuf57kAFx5X6TDn+FJP8P4TjL1ilUZELwZjiS+N5RgErNb+uXFYMfH+3GZ8pjVt4noYiAJ8irNQuEHBIAtXs9gXocjG82KK1LT32BO+PsnQFWFQcRW7SQoDAdLJdCSHuc3M+g6tcLGCjfgtXty7+TjyYmY73pba7iPFHMEmRWkKTO3JkRs9VC54xI2rtvuU3LLDfeQn7XGM6FI8rsWcrDlbXgzT1c203etq3A4wcTDt88zMYwiHrgo20gauWic79uKRP+Ak=
+  app: evening-wave-65413
+  on:
+    repo: FranciaMoran/Calorie_Counter
