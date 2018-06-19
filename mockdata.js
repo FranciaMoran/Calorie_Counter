@@ -1,9 +1,6 @@
-const uuid = require('uuid');
+'use strict'
 
-function StorageException(message) {
-   this.message = message;
-   this.name = "StorageException";
-}
+const uuid = require('uuid');
 
 const MOCK_LOGGED_FOOD = {
 	create: function(id, itemName, Calories, Cholesterol, Dietary_Fiber, Protein, Saturated_Fat, Sodium, Sugars, Carbohydrates, Total_Fat) {
