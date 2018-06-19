@@ -2,6 +2,65 @@
 
 const uuid = require('uuid');
 
+const MOCK_LOGGED_FOOD = {
+	create: function(id, itemName, Calories, Cholesterol, Dietary_Fiber, Protein, Saturated_Fat, Sodium, Sugars, Carbohydrates, Total_Fat) {
+	const food_items =
+     {
+     	id:  uuid.v4(),
+     	itemName: name,
+     	Calories: amount,
+        Cholesterol: amount,
+        Dietary_Fiber: amount,
+        Protein: amount,
+        Saturated_Fat: amount,
+        Sodium: amount,
+        Sugars: amount,
+        Carbohydrates: amount,
+        Total_Fat: amount
+     };
+	this.food_items[food_items.id] = food_items;
+    return food_items;
+},
+  get: function() {
+    return Object.keys(this.food_items).map(key => this.food_items[key]);
+  }
+};
+
+function createLoggedFood() {
+  const storage = Object.create(MOCK_LOGGED_FOOD);
+  storage.food_items = {};
+  return storage;
+}
+
+module.exports = {
+  MOCK_LOGGED_FOOD: createLoggedFood()
+}
+
+/*
+function getLoggedFood (callbackFn) {
+    setTimeout(function(){ callbackFn(MOCK_STATUS_UPDATES)}, 100);
+}
+
+// this function stays the same when we connect
+// to real API later
+function displayLoggedFood(data) {
+    for (index in data.food_items) {
+       $('body').append(
+        '<p>' + data.food_items[index].text + '</p>');
+    }
+}
+
+// this function can stay the same even when we
+// are connecting to real API
+function getAndDisplayLoggedFood() {
+    getLoggedFood(displayLoggedFood);
+}
+
+$(function() {
+    getAndDisplayLoggedFood();
+})
+*/
+/*
 let MOCK_LOGGED_FOOD = {
 	create: function(id, itemName, Calories, Cholesterol, Dietary_Fiber, Protein, Saturated_Fat, Sodium, Sugars, Carbohydrates, Total_Fat) {
 	"food_items": [
@@ -78,38 +137,4 @@ let MOCK_LOGGED_FOOD = {
     return Object.keys(this.food_items).map(key => this.food_items[key]);
   },
 };
-
-function createLoggedFood() {
-  const storage = Object.create(MOCK_LOGGED_FOOD);
-  storage.food_items = {};
-  return storage;
-}
-
-module.exports = {
-  MOCK_LOGGED_FOOD: createLoggedFood()
-}
-
-/*
-function getLoggedFood (callbackFn) {
-    setTimeout(function(){ callbackFn(MOCK_STATUS_UPDATES)}, 100);
-}
-
-// this function stays the same when we connect
-// to real API later
-function displayLoggedFood(data) {
-    for (index in data.food_items) {
-       $('body').append(
-        '<p>' + data.food_items[index].text + '</p>');
-    }
-}
-
-// this function can stay the same even when we
-// are connecting to real API
-function getAndDisplayLoggedFood() {
-    getLoggedFood(displayLoggedFood);
-}
-
-$(function() {
-    getAndDisplayLoggedFood();
-})
 */
