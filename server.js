@@ -2,6 +2,16 @@ const express = require('express');
 const app = express();
 app.use(express.static('public'));
 
+/////////////////////////////
+const router = express.Router();
+const morgan = require('morgan');
+const bodyParser = require('body-parser');
+
+const {food_items} = require('./mockdata');
+const jsonParser = bodyParser.json();
+app.use(morgan('common'));
+
+/////////////////////////////////
 let server;
 function runServer() {
   const port = process.env.PORT || 3000;
@@ -33,3 +43,7 @@ if (require.main === module) {
 }
 
 module.exports = {app, runServer, closeServer};
+//////////////////////////////////////////////////////////
+app.get('/loggedfood', (req, res) => {
+  res.json(food_items.get());
+});
