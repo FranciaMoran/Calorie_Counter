@@ -44,17 +44,3 @@ if (require.main === module) {
 
 module.exports = {app, runServer, closeServer};
 
-//////////////////////////////////////////////////////////
-/*
-MOCK_LOGGED_FOOD.create('beans', 5, 80, 5, 4, 7, 2, 8, 2, 6);
-MOCK_LOGGED_FOOD.create('tomatoes', 3, 5, 9, 8, 6, 2, 4, 7, 8);
-MOCK_LOGGED_FOOD.create('peppers', 4, 2, 5, 7, 5, 9, 8, 4, 7);
-
-
-app.get('/loggedfood', (req, res) => {
-  res.json(MOCK_LOGGED_FOOD.get());
-});
-
-app.listen(process.env.PORT || 3000, () => {
-  console.log(`Your app is listening on port ${process.env.PORT || 3000}`);
-});
