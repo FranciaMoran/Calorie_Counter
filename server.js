@@ -12,7 +12,6 @@ const jsonParser = bodyParser.json();
 app.use(morgan('common'));
 
 //////////////////////////////////
-/*
 let server;
 function runServer() {
   const port = process.env.PORT || 3000;
@@ -44,11 +43,12 @@ if (require.main === module) {
 }
 
 module.exports = {app, runServer, closeServer};
-*/
+
 //////////////////////////////////////////////////////////
-MOCK_LOGGED_FOOD.create('beans', 2,5,80,5,4,7,2,8,2,6);
-MOCK_LOGGED_FOOD.create('tomatoes', 3,5,9,8,6,2,4,7,8,1);
-MOCK_LOGGED_FOOD.create('peppers', 4,2,5,7,5,9,8,4,7,5);
+/*
+MOCK_LOGGED_FOOD.create('beans', 5, 80, 5, 4, 7, 2, 8, 2, 6);
+MOCK_LOGGED_FOOD.create('tomatoes', 3, 5, 9, 8, 6, 2, 4, 7, 8);
+MOCK_LOGGED_FOOD.create('peppers', 4, 2, 5, 7, 5, 9, 8, 4, 7);
 
 
 app.get('/loggedfood', (req, res) => {

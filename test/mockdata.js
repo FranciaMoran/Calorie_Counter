@@ -1,4 +1,4 @@
-const uuid = require('uuid');
+/*const uuid = require('uuid');
 
 function StorageException(message) {
    this.message = message;
@@ -6,20 +6,20 @@ function StorageException(message) {
 }
 
 const MOCK_LOGGED_FOOD = {
-	create: function(id, itemName, Calories, Cholesterol, Dietary_Fiber, Protein, Saturated_Fat, Sodium, Sugars, Carbohydrates, Total_Fat) {
+	create: function(name, amount1, amount2, amount3, amount4, amount5, amount6, amount7, amount8, amount9) {
 	const food_items =
      {
-     	id:  uuid.v4(),
+     	id: uuid.v4(),
      	itemName: name,
-     	Calories: amount,
-        Cholesterol: amount,
-        Dietary_Fiber: amount,
-        Protein: amount,
-        Saturated_Fat: amount,
-        Sodium: amount,
-        Sugars: amount,
-        Carbohydrates: amount,
-        Total_Fat: amount
+     	Calories: amount1,
+        Cholesterol: amount2,
+        Dietary_Fiber: amount3,
+        Protein: amount4,
+        Saturated_Fat: amount5,
+        Sodium: amount6,
+        Sugars: amount7,
+        Carbohydrates: amount8,
+        Total_Fat: amount9
      };
 	this.food_items[food_items.id] = food_items;
     return food_items;
@@ -63,7 +63,6 @@ $(function() {
     getAndDisplayLoggedFood();
 })
 */
-/*
 let MOCK_LOGGED_FOOD = {
 	create: function(id, itemName, Calories, Cholesterol, Dietary_Fiber, Protein, Saturated_Fat, Sodium, Sugars, Carbohydrates, Total_Fat) {
 	"food_items": [
