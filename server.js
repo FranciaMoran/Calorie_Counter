@@ -7,7 +7,6 @@ const router = express.Router();
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 
-const {MOCK_LOGGED_FOOD} = require('./mockdata');
 const jsonParser = bodyParser.json();
 app.use(morgan('common'));
 
