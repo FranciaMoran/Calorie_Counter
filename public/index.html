@@ -4,16 +4,25 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <title>Calorie Counter</title>
-    <link href="index.css" rel="stylesheet" type="text/css" />
+    <link href="stylesheets/style.css" rel="stylesheet" type="text/css" />
     <script
-          src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-          <script src="javascripts/index.js"></script>
+    src="https://code.jquery.com/jquery-3.2.1.min.js">
+    </script>
+    <script type="text/javascript" src="javascripts/index.js"></script>
   </head>
   <body>
-  	<h1>Calorie Counter!</h1>
-    <div id="search-page">
-  	<p>Use this easy to use app to keep track of your daily intake of calories!</p>
-  	<button id="get-started">Get Started!</button>
-    </div>
-  </body>
+    <h1>Calorie Counter!</h1>
+      <div id="next-page">
+        <p>Use this easy to use app to keep track of your daily intake of calories!</p>
+        <form>
+          <p>search food items here for nutritional information to add to your daily calories</p>
+          <label id="labels" for="js-query">Food Item Here:</label>
+          <input type="text" id="js-query" name="search" aria-label="search-here" placeholder="enter food here">
+          <button id="search-button" type="submit">Search</button>
+          <span id="error"></span><br>
+         </form>
+        <div id="nutrition-data">
+        </div>
+       </div>
+   </body>
 </html>

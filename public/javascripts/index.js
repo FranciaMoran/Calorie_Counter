@@ -1,77 +1,9 @@
+const NUTRITION_URL = 
 
+`https://api.nutritionix.com/v1_1/search/`;
 
-let MOCK_LOGGED_FOOD = {
-	"food_items": [
-     {
-     	"id": "111111",
-     	"itemName": "apple",
-     	"Calories": "100",
-        "Cholesterol": "0",
-        "Dietary_Fiber": "25",
-        "Protein": "5",
-        "Saturated_Fat": "5",
-        "Sodium": "4",
-        "Sugars": "4",
-        "Carbohydrates": "25",
-        "Total_Fat": "1"
-     },
-     {
-     "id": "222222",
-     	"itemName": "orange",
-     	"Calories": "120",
-        "Cholesterol": "3",
-        "Dietary_Fiber": "20",
-        "Protein": "4",
-        "Saturated_Fat": "0",
-        "Sodium": "3",
-        "Sugars": "3",
-        "Carbohydrates": "10",
-        "Total_Fat": "1"
-    },
-    {
-    	"id": "333333",
-     	"itemName": "grapes",
-     	"Calories": "80",
-        "Cholesterol": "3",
-        "Dietary_Fiber": "28",
-        "Protein": "3",
-        "Saturated_Fat": "8",
-        "Sodium": "1",
-        "Sugars": "1",
-        "Carbohydrates": "8",
-        "Total_Fat": "0"
-    },
-    {
-      "id": "444444",
-     	"itemName": "banana",
-     	"Calories": "105",
-        "Cholesterol": "2",
-        "Dietary_Fiber": "30",
-        "Protein": "55",
-        "Saturated_Fat": "8",
-        "Sodium": "2",
-        "Sugars": "9",
-        "Carbohydrates": "55",
-        "Total_Fat": "8"
-    },
-    {
-    	"id": "555555",
-     	"itemName": "chicken",
-     	"Calories": "125",
-        "Cholesterol": "2",
-        "Dietary_Fiber": "5",
-        "Protein": "15",
-        "Saturated_Fat": "5",
-        "Sodium": "4",
-        "Sugars": "4",
-        "Carbohydrates": "25",
-        "Total_Fat": "1"
-    }
-	]
-};
- 
 function getLoggedFood(callbackFn) {
-	setTimeout(function(){ callbackFn(MOCK_LOGGED_FOOD)}, 1);
+    setTimeout(function(){ callbackFn(MOCK_LOGGED_FOOD)}, 1);
 }
 
 function displayLoggedFood(data) {
@@ -86,20 +18,87 @@ function getAndDisplayLoggedFood() {
     getLoggedFood(displayLoggedFood);
 }
 
-function getStartedButton() {
-	$('#get-started').click(event =>{
-		event.preventDefault();
-	 $('#search-page').html(searchPage());
-	 getAndDisplayLoggedFood();
-	})
+function searchItemsButton() {
+    $('#search-button').click(event =>{
+      event.preventDefault();
+     //getAndDisplayLoggedFood();
+      const queryTarget = $(event.currentTarget).find('#js-query');
+      const queryT = $('#js-query').val()
+        if (queryT){
+        $('#error').text("")
+      //alert(queryT);
+        getNutritionAPI(queryT);
+        }
+        else {
+        $('#error').text("Please enter an item")
+        }
+    });
+}
+  
+$(searchItemsButton)
+
+function getNutritionAPI (queryT) {
+
+    let settings = {
+      url: NUTRITION_URL + queryT,
+      data: {
+      results: `0:05`,
+      cal_min:0,
+      cal_max:50000,
+      fields:'item_name,item_id,nf_water_grams,nf_calories,nf_calories_from_fat,nf_total_fat,nf_saturated_fat,nf_trans_fatty_acid,nf_polyunsaturated_fat,nf_monounsaturated_fat,nf_cholesterol,nf_sodium,nf_total_carbohydrate,nf_dietary_fiber,nf_sugars,nf_protein',
+      appId:'f1d9b3b4',
+      appKey:'d617582ba93c896d32c6b93eb8443a64'
+      },
+      error(xhr,status,error)   {
+        console.log( status);
+        console.log( error );
+      },
+      dataType: `json`,
+      type:`GET`,
+      success: function (data){
+      console.log(data);
+      //alert(data.hits[0].fields.item_name);
+        var resultsHTML = "";
+        for (var i=0; i < data.hits.length; i++){
+          var eachItem = data.hits[i];
+          var eachItemHTML = displayNutritionData(eachItem);
+          resultsHTML += eachItemHTML;
+        }
+       $('#nutrition-data').html(resultsHTML);
+       addingToDataBase();
+      }
+    };
+  let result = $.ajax(settings);
 }
 
-$(getStartedButton)
+function displayNutritionData (eachItem) {
+  return `
+  <div>
+    <p>${eachItem.fields.item_name}</p>
+    <button class="add">add</button>
+    <p>Calories: <span id="calories">${eachItem.fields.nf_calories}</span></p>
+    <p>Cholesterol: <span id="cholesterol">${eachItem.fields.nf_cholesterol}</span>mg</p>
+    <p>Dietary Fiber: <span id="dietary-fiber">${eachItem.fields.nf_dietary_fiber}</span>g</p>
+    <p>Protein: <span id="protein">${eachItem.fields.nf_protein}</span>g</p>
+    <p>Saturated Fat: <span id="saturated-fat">${eachItem.fields.nf_saturated_fat}</span>g</p>
+    <p>Sodium: <span id="sodium">${eachItem.fields.nf_sodium}</span>mg</p>
+    <p>Sugar: <span id="sugar">${eachItem.fields.nf_sugars}</span>g</p>
+    <p>Carbohydrates: <span id="carbohydrates">${eachItem.fields.nf_total_carbohydrate}</span>g</p>
+    <p>Total Fat: <span id="total-fat">${eachItem.fields.nf_total_fat}</span>g</p>
+  </div>`
+  ;
+}
 
-function searchPage () {
-	return `<p>search food items here for nutritional information to add to your daily calories</p><label id="labels" for="js-query"><b>Food Item Here:</b></label>
-            <input type="text" id="js-query" class="controls" name="search" aria-label="search-here" placeholder="enter food here">
-              <button id="search-button" type="submit">Search</button>
-              <span id="error"></span><br><p>Logged Food:</p>`
-              ;
+function addingToDataBase () {
+  $('.add').on('click', function(event){
+    console.log($(this).parent().find('#calories').text());
+    console.log($(this).parent().find('#cholesterol').text());
+    console.log($(this).parent().find('#dietary-fiber').text());
+    console.log($(this).parent().find('#protein').text());
+    console.log($(this).parent().find('#saturated-fat').text());
+    console.log($(this).parent().find('#sodium').text());
+    console.log($(this).parent().find('#sugar').text());
+    console.log($(this).parent().find('#carbohydrates').text());
+    console.log($(this).parent().find('#total-fat').text());
+  })
 }
