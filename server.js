@@ -21,7 +21,7 @@ function runServer(databaseUrl = DATABASE_URL, port = PORT) {
       }
       server = app.listen(port, () => {
         console.log(`Your app is listening on port ${port}`);
-        resolve(server);
+        resolve();
       })
       .on('error', err => {
         mongoose.disconnect();
@@ -37,8 +37,7 @@ function closeServer() {
       console.log('Closing server');
       server.close(err => {
       if (err) {
-        reject(err);
-        return;
+        return reject(err);
       }
       resolve();
       });
