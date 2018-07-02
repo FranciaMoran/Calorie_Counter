@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
 const foodItemSchema = mongoose.Schema({
-  foodItem: {type: String , required: true }, 
+  name: {type: String, required: true }, 
   calories: { type: Number, required: true },
   cholesterol: { type: Number },
   dietaryFiber: { type: Number }, 
@@ -19,12 +19,12 @@ const foodItemSchema = mongoose.Schema({
 foodItemSchema.methods.serialize = function() {
   return {
     id: this._id,
-    foodItem: this.foodItem,
+    name: this.name,
     calories: this.calories,
     cholesterol: this.cholesterol,
     dietaryFiber: this.dietaryFiber,
     protein: this.protein,
-    saturatedFat: this.saturatedfat,
+    saturatedFat: this.saturatedFat,
     sodium: this.sodium,
     sugars: this.sugars,
     carbohydrates: this.carbohydrates,

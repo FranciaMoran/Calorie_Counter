@@ -1,3 +1,11 @@
 * {
 	background-color: #ddbbaa;
 }
+
+#js-query {
+	 background-color: green;
+}
+
+#added-items {
+	margin-left: 50%;
+}
