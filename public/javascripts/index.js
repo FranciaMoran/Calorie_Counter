@@ -131,7 +131,6 @@ function getAddedItems () {
        dataType: 'json', 
        contentType: 'application/json; charset= utf-8', 
        success: function(data) {
-        alert("test");
           let resultsHTML = ""
           for (let i=0; i < data.length; i++){
             let eachFoodItem = data[i];
@@ -147,6 +146,8 @@ function getAddedItems () {
 
 function displayFoodData (eachFoodItem) {
    return `<p id="name">${eachFoodItem.name}</p>
+   <button>edit</button>
+   <button>delete</button>
     <p>Calories: <span id="calories">${eachFoodItem.calories}</span></p>
     <p>Cholesterol: <span id="cholesterol">${eachFoodItem.cholesterol}</span>mg</p>
     <p>Dietary Fiber: <span id="dietary-fiber">${eachFoodItem.dietaryFiber}</span>g</p>
