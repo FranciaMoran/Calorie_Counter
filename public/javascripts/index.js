@@ -121,6 +121,41 @@ function posting(foodData) {
         console.log(data);
        }}; 
     $.ajax(settings);
-    $('#added-items').html();
   }
 
+function getAddedItems () {
+  $('#show-logged').on('click', function(event){
+  let settings = {
+       url: "/logged", 
+       type: 'GET', 
+       dataType: 'json', 
+       contentType: 'application/json; charset= utf-8', 
+       success: function(data) {
+        alert("test");
+          let resultsHTML = ""
+          for (let i=0; i < data.length; i++){
+            let eachFoodItem = data[i];
+            let eachFoodItemHTML = displayFoodData(eachFoodItem);
+            resultsHTML += eachFoodItemHTML;
+          }
+          $('#added-items').html(resultsHTML)
+       }   
+  }
+  $.ajax(settings); 
+});
+}
+
+function displayFoodData (eachFoodItem) {
+   return `<p id="name">${eachFoodItem.name}</p>
+    <p>Calories: <span id="calories">${eachFoodItem.calories}</span></p>
+    <p>Cholesterol: <span id="cholesterol">${eachFoodItem.cholesterol}</span>mg</p>
+    <p>Dietary Fiber: <span id="dietary-fiber">${eachFoodItem.dietaryFiber}</span>g</p>
+    <p>Protein: <span id="protein">${eachFoodItem.protein}</span>g</p>
+    <p>Saturated Fat: <span id="saturated-fat">${eachFoodItem.saturatedFat}</span>g</p>
+    <p>Sodium: <span id="sodium">${eachFoodItem.sodium}</span>mg</p>
+    <p>Sugar: <span id="sugar">${eachFoodItem.sugars}</span>g</p>
+    <p>Carbohydrates: <span id="carbohydrates">${eachFoodItem.carbohydrate}</span>g</p>
+    <p>Total Fat: <span id="total-fat">${eachFoodItem.totalFat}</span>g</p>`;
+}
+
+$(getAddedItems)
