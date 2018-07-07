@@ -1,5 +1,5 @@
 * {
-	background-color: #ddbbaa;
+	/*background-color: #ddbbaa;*/
 }
 
 #js-query {
@@ -7,5 +7,71 @@
 }
 
 #added-items {
-	margin-left: 50%;
+	float: right;
+	width: 50%;
+}
+
+#nutrition-data {
+	width: 50%;
+}
+
+.add {
+   display: inline; 
+   float: right;
+    width: 100px;
+    height: 50px;
+    padding: 5px;
+    border: 1px solid blue;    
+    background-color: yellow; 
+}
+
+#delete {
+	display: inline; 
+   float: right;
+    width: 100px;
+    height: 50px;
+    padding: 5px;
+    border: 1px solid blue;    
+    background-color: yellow; 
+}
+
+#change {
+	display: inline; 
+   float: right;
+   width: 100px;
+    height: 50px;
+    padding: 5px;
+    border: 1px solid blue;    
+    background-color: yellow; 
+}
+
+#show-logged {
+	margin-right: 50%;
+   display: inline; 
+   float: right;
+   width: 100px;
+    height: 50px;
+    padding: 5px;
+    border: 1px solid blue;    
+    background-color: yellow; 
+}
+
+#confirm-change {
+	display: inline; 
+   float: right;
+   width: 100px;
+    height: 50px;
+    padding: 5px;
+    border: 1px solid blue;    
+    background-color: yellow; 
+}
+
+#add-own {
+	display: inline; 
+   float: right;
+   width: 100px;
+    height: 50px;
+    padding: 5px;
+    border: 1px solid blue;    
+    background-color: yellow; 
 }

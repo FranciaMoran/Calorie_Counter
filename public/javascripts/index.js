@@ -2,31 +2,20 @@ const NUTRITION_URL =
 
 `https://api.nutritionix.com/v1_1/search/`;
 
-function getLoggedFood(callbackFn) {
-    setTimeout(function(){ callbackFn(MOCK_LOGGED_FOOD)}, 1);
-}
 
-function displayLoggedFood(data) {
-    for (index in data.food_items) {
-       $('body').append(
-        '<p>' + data.food_items[index].itemName + '</p>' +
-        '<p>' + data.food_items[index].calories + '</p>');
-    }
-}
 
-function getAndDisplayLoggedFood() {
-    getLoggedFood(displayLoggedFood);
-}
+$(getAddedItems)
+$(changeItems)
+$(deleteItems)
+$(addCustomItem)
 
 function searchItemsButton() {
     $('#search-button').click(event =>{
       event.preventDefault();
-     //getAndDisplayLoggedFood();
       const queryTarget = $(event.currentTarget).find('#js-query');
       const queryT = $('#js-query').val()
         if (queryT){
         $('#error').text("")
-      //alert(queryT);
         getNutritionAPI(queryT);
         }
         else {
@@ -34,7 +23,7 @@ function searchItemsButton() {
         }
     });
 }
-  
+
 $(searchItemsButton)
 
 function getNutritionAPI (queryT) {
@@ -57,11 +46,10 @@ function getNutritionAPI (queryT) {
       type:`GET`,
       success: function (data){
       console.log(data);
-      //alert(data.hits[0].fields.item_name);
         var resultsHTML = "";
         for (var i=0; i < data.hits.length; i++){
           var eachItem = data.hits[i];
-          var eachItemHTML = displayNutritionData(eachItem);
+          var eachItemHTML = displayNutritionAPIData(eachItem);
           resultsHTML += eachItemHTML;
         }
        $('#nutrition-data').html(resultsHTML);
@@ -71,11 +59,10 @@ function getNutritionAPI (queryT) {
   let result = $.ajax(settings);
 }
 
-function displayNutritionData (eachItem) {
-  return `
-  <div>
+function displayNutritionAPIData (eachItem) {
+  return `<div>
+  <button class="add">add</button>
     <p id="name">${eachItem.fields.item_name}</p>
-    <button class="add">add</button>
     <p>Calories: <span id="calories">${eachItem.fields.nf_calories}</span></p>
     <p>Cholesterol: <span id="cholesterol">${eachItem.fields.nf_cholesterol}</span>mg</p>
     <p>Dietary Fiber: <span id="dietary-fiber">${eachItem.fields.nf_dietary_fiber}</span>g</p>
@@ -109,7 +96,7 @@ function addingToDataBase () {
 }
 
 function posting(foodData) {
-  console.log("testing2")
+  alert("testing2");
     settings = {
        url: "/logged", 
        type: 'POST', 
@@ -117,11 +104,33 @@ function posting(foodData) {
        dataType: 'json', 
        contentType: 'application/json; charset= utf-8', 
        success: function(data) {
-        console.log("test");
-        console.log(data);
-       }}; 
-    $.ajax(settings);
+          let resultsHTML = ""
+          for (let i=0; i < data.length; i++){
+            let eachFoodItem = data[i];
+            let eachFoodItemHTML = displayFoodData(eachFoodItem);
+            resultsHTML += eachFoodItemHTML;
+          }
+          $('#added-items').html(resultsHTML)
+       }   
   }
+  $.ajax(settings); 
+}
+
+function displayFoodData (eachFoodItem) {
+   return `
+    <button id="change">edit</button>
+    <button id="delete">delete</button>
+    <p id="name">${eachFoodItem.name}</p>
+    <p>Calories: <span id="calories">${eachFoodItem.calories}</span></p>
+    <p>Cholesterol: <span id="cholesterol">${eachFoodItem.cholesterol}</span>mg</p>
+    <p>Dietary Fiber: <span id="dietary-fiber">${eachFoodItem.dietaryFiber}</span>g</p>
+    <p>Protein: <span id="protein">${eachFoodItem.protein}</span>g</p>
+    <p>Saturated Fat: <span id="saturated-fat">${eachFoodItem.saturatedFat}</span>g</p>
+    <p>Sodium: <span id="sodium">${eachFoodItem.sodium}</span>mg</p>
+    <p>Sugar: <span id="sugar">${eachFoodItem.sugars}</span>g</p>
+    <p>Carbohydrates: <span id="carbohydrates">${eachFoodItem.carbohydrate}</span>g</p>
+    <p>Total Fat: <span id="total-fat">${eachFoodItem.totalFat}</span>g</p>`;
+}
 
 function getAddedItems () {
   $('#show-logged').on('click', function(event){
@@ -144,19 +153,58 @@ function getAddedItems () {
 });
 }
 
-function displayFoodData (eachFoodItem) {
-   return `<p id="name">${eachFoodItem.name}</p>
-   <button>edit</button>
-   <button>delete</button>
-    <p>Calories: <span id="calories">${eachFoodItem.calories}</span></p>
-    <p>Cholesterol: <span id="cholesterol">${eachFoodItem.cholesterol}</span>mg</p>
-    <p>Dietary Fiber: <span id="dietary-fiber">${eachFoodItem.dietaryFiber}</span>g</p>
-    <p>Protein: <span id="protein">${eachFoodItem.protein}</span>g</p>
-    <p>Saturated Fat: <span id="saturated-fat">${eachFoodItem.saturatedFat}</span>g</p>
-    <p>Sodium: <span id="sodium">${eachFoodItem.sodium}</span>mg</p>
-    <p>Sugar: <span id="sugar">${eachFoodItem.sugars}</span>g</p>
-    <p>Carbohydrates: <span id="carbohydrates">${eachFoodItem.carbohydrate}</span>g</p>
-    <p>Total Fat: <span id="total-fat">${eachFoodItem.totalFat}</span>g</p>`;
+function changeItems () {
+  $('#added-items').on('click', '#change', function(event){
+    alert("testing");
+  let settings = {
+       url: "/logged", 
+       type: 'GET', 
+       dataType: 'json', 
+       contentType: 'application/json; charset= utf-8', 
+       success: function(data) {
+          let resultsHTML = ""
+          for (let i=0; i < data.length; i++){
+            let eachFoodItem = data[i];
+            let eachFoodItemHTML = editDisplayedFoodData(eachFoodItem);
+            resultsHTML += eachFoodItemHTML;
+          }
+          $('#added-items').html(resultsHTML)
+       }   
+  }
+  $.ajax(settings); 
+});
 }
 
-$(getAddedItems)
+function editDisplayedFoodData (eachFoodItem) {
+  return `<p id="name">${eachFoodItem.name}</p>
+  <button id="confirm-change">ok</button>
+    <p>Calories: <input type="text" id="calories" placeholder="${eachFoodItem.calories}"></input></p>
+    <p>Cholesterol: <input type="text" id="cholesterol" placeholder="${eachFoodItem.cholesterol}"></input>mg</p>
+    <p>Dietary Fiber: <input type="text" id="dietary-fiber" placeholder="${eachFoodItem.dietaryFiber}"></input>g</p>
+    <p>Protein: <input type="text" id="protein" placeholder="${eachFoodItem.protein}"></input>g</p>
+    <p>Saturated Fat: <input type="text" id="saturated-fat" placeholder="${eachFoodItem.saturatedFat}"></input>g</p>
+    <p>Sodium: <input type="text" id="sodium" placeholder="${eachFoodItem.sodium}"></input>mg</p>
+    <p>Sugar: <input type="text" id="sugar" placeholder="${eachFoodItem.sugars}"></input>g</p>
+    <p>Carbohydrates: <input type="text" id="carbohydrates" placeholder="${eachFoodItem.carbohydrates}"></input>g</p>
+    <p>Total Fat: <input type="text" id="total-fat" placeholder="${eachFoodItem.totalFat}"></input>g</p>`;
+}
+
+function deleteItems () {
+  $('#added-items').on('click', '#delete', function(event){
+    alert("testingdelete");
+      let settings = {
+       url: "/logged/_id", 
+       type: 'DELETE', 
+       success: function(data) {
+          alert("testingsuccessdelete");
+       }   
+  }
+  $.ajax(settings); 
+});
+}
+
+function addCustomItem () {
+  $('#add-own').on('click', function(event) {
+    alert("testing add own button");
+  })
+}
