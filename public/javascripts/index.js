@@ -5,8 +5,6 @@ const NUTRITION_URL =
 
 
 $(getAddedItems)
-$(changeItems)
-$(deleteItems)
 $(addCustomItem)
 
 function searchItemsButton() {
@@ -27,7 +25,6 @@ function searchItemsButton() {
 $(searchItemsButton)
 
 function getNutritionAPI (queryT) {
-
     let settings = {
       url: NUTRITION_URL + queryT,
       data: {
@@ -116,10 +113,11 @@ function posting(foodData) {
   $.ajax(settings); 
 }
 
+$(deleteItems)
+
 function displayFoodData (eachFoodItem) {
    return `
-    <button id="change">edit</button>
-    <button id="delete">delete</button>
+    <button class="delete" id="${eachFoodItem.id}">delete</button>
     <p id="name">${eachFoodItem.name}</p>
     <p>Calories: <span id="calories">${eachFoodItem.calories}</span></p>
     <p>Cholesterol: <span id="cholesterol">${eachFoodItem.cholesterol}</span>mg</p>
@@ -153,27 +151,6 @@ function getAddedItems () {
 });
 }
 
-function changeItems () {
-  $('#added-items').on('click', '#change', function(event){
-    alert("testing");
-  let settings = {
-       url: "/logged", 
-       type: 'GET', 
-       dataType: 'json', 
-       contentType: 'application/json; charset= utf-8', 
-       success: function(data) {
-          let resultsHTML = ""
-          for (let i=0; i < data.length; i++){
-            let eachFoodItem = data[i];
-            let eachFoodItemHTML = editDisplayedFoodData(eachFoodItem);
-            resultsHTML += eachFoodItemHTML;
-          }
-          $('#added-items').html(resultsHTML)
-       }   
-  }
-  $.ajax(settings); 
-});
-}
 
 function editDisplayedFoodData (eachFoodItem) {
   return `<p id="name">${eachFoodItem.name}</p>
@@ -190,13 +167,20 @@ function editDisplayedFoodData (eachFoodItem) {
 }
 
 function deleteItems () {
-  $('#added-items').on('click', '#delete', function(event){
+  $('#added-items').on('click', '.delete', function(event){
+    console.log(this.id);
     alert("testingdelete");
       let settings = {
-       url: "/logged/_id", 
-       type: 'DELETE', 
+       url: "/logged/" + this.id,
+       type: 'DELETE',
        success: function(data) {
-          alert("testingsuccessdelete");
+        let resultsHTML = ""
+          for (let i=0; i < data.length; i++){
+            let eachFoodItem = data[i];
+            let eachFoodItemHTML = displayFoodData(eachFoodItem);
+            resultsHTML += eachFoodItemHTML;
+          }
+          $('#added-items').html(resultsHTML)
        }   
   }
   $.ajax(settings); 
@@ -205,6 +189,58 @@ function deleteItems () {
 
 function addCustomItem () {
   $('#add-own').on('click', function(event) {
-    alert("testing add own button");
+    $('#add-custom').html(`<p id="name">test</p>
+    <button class="confirm-change">ok</button>
+    <p>Calories: <input type="text" id="calories" placeholder="test"></input></p>
+    <p>Cholesterol: <input type="text" id="cholesterol" placeholder="test"></input>mg</p>
+    <p>Dietary Fiber: <input type="text" id="dietary-fiber" placeholder="test"></input>g</p>
+    <p>Protein: <input type="text" id="protein" placeholder="test"></input>g</p>
+    <p>Saturated Fat: <input type="text" id="saturated-fat" placeholder="test"></input>g</p>
+    <p>Sodium: <input type="text" id="sodium" placeholder="test"></input>mg</p>
+    <p>Sugar: <input type="text" id="sugar" placeholder="test"></input>g</p>
+    <p>Carbohydrates: <input type="text" id="carbohydrates" placeholder="test"></input>g</p>
+    <p>Total Fat: <input type="text" id="total-fat" placeholder="test"></input>g</p>`)
+  })
+}
+
+function customPosting () {
+    let settings = {
+       url: "/logged", 
+       type: 'POST', 
+       data: JSON.stringify(foodData), 
+       dataType: 'json', 
+       contentType: 'application/json; charset= utf-8', 
+       success: function(data) {
+          let resultsHTML = ""
+          for (let i=0; i < data.length; i++){
+            let eachFoodItem = data[i];
+            let eachFoodItemHTML = displayFoodData(eachFoodItem);
+            resultsHTML += eachFoodItemHTML;
+          }
+          $('#added-items').html(resultsHTML)
+          customAddingToDataBase()
+       }   
+  }
+  $.ajax(settings); 
+}
+
+
+function customAddingToDataBase () {
+  $('#add-custom').on('click', '.confirm-change', function(event){
+    alert("custom add");
+    let customFoodData = {
+      name: ($(this).parent().find('#name').text()),
+      calories: ($(this).parent().find('#calories').text()),
+      cholesterol: ($(this).parent().find('#cholesterol').text()),
+      dietaryFiber: ($(this).parent().find('#dietary-fiber').text()),
+      protein: ($(this).parent().find('#protein').text()),
+      saturatedFat: ($(this).parent().find('#saturated-fat').text()),
+      sodium: ($(this).parent().find('#sodium').text()),
+      sugars: ($(this).parent().find('#sugar').text()),
+      carbohydrates: ($(this).parent().find('#carbohydrates').text()),
+      totalFat: ($(this).parent().find('#total-fat').text())
+    }
+    event.preventDefault();
+    customPosting(customFoodData); 
   })
 }
