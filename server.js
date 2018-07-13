@@ -49,7 +49,7 @@ function closeServer() {
 
 
 app.post('/logged', jsonParser, (req, res) => {
-  const requiredFields = ['name', 'calories', 'cholesterol', 'dietaryFiber', 'protein', 'saturatedFat', 'sodium', 'sugars', 'carbohydrates', 'totalFat'];
+  const requiredFields = ['name', 'calories'];
   console.log("posting");
   console.log(req.body);
   for (let i = 0; i < requiredFields.length; i++) {
@@ -57,7 +57,7 @@ app.post('/logged', jsonParser, (req, res) => {
     if (!(field in req.body)) {
       const message = `Missing \`${field}\` in request body`;
       console.error(message);
-      return res.status(400).send(message);
+      return res.status().send(message);
     }
   }
 
@@ -135,7 +135,7 @@ app.put('/logged/:id', jsonParser, (req, res) => {
   }*/
 
   const updated = {};
-  const updateableFields =  ['name', 'calories', 'cholesterol', 'dietaryFiber', 'protein', 'saturatedFat', 'sodium', 'sugars', 'carbohydrates', 'totalFat'];;
+  const updateableFields =  ['name', 'calories'];;
   updateableFields.forEach(field => {
     if (field in req.body) {
       updated[field] = req.body[field];
