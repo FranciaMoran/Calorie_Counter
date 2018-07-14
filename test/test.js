@@ -201,7 +201,7 @@ describe('PUT endpoint', function () {
       const updateData = {
       name: 'pineapple', 
       calories: 100,
-      cholesterol: 0,
+      cholesterol: 2,
       dietaryFiber: 1,
       protein: 1,
       saturatedFat: 0,
@@ -252,7 +252,7 @@ describe('DELETE endpoint', function () {
           return chai.request(app).delete(`/logged/${post.id}`);
         })
         .then(res => {
-          res.should.have.status(204);
+          res.should.have.status(200);
           return loggedItem.findById(post.id);
         })
         .then(_post => {

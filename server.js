@@ -135,7 +135,7 @@ app.put('/logged/:id', jsonParser, (req, res) => {
   }*/
 
   const updated = {};
-  const updateableFields =  ['name', 'calories'];;
+  const updateableFields =  ['name', 'calories', 'cholesterol', 'dietaryFiber', 'protein', 'saturatedFat', 'sodium', 'sugars', 'carbohydrates', 'totalFat'];;
   updateableFields.forEach(field => {
     if (field in req.body) {
       updated[field] = req.body[field];

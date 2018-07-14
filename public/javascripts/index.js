@@ -170,15 +170,20 @@ function getLoggedItems () {
             let eachFoodItemHTML = displayLoggedFoodData(eachFoodItem);
             resultsHTML += eachFoodItemHTML;
             edit(eachFoodItem)
+            
+            //let sum = 0;
+            //for (let i = 0; i < foodItems.length; i++) {
+            //sum += +foodItems[i].calories;
+            //}
           }
-          totalCalories(data);
+          //totalCalories(data);
           $('#added-items').html(resultsHTML)
        }   
   }
   $.ajax(settings); 
 }
 
-function displayLoggedFoodData (eachFoodItem) {
+function displayLoggedFoodData (eachFoodItem, foodItems) {
    return `
     <button class="delete" id="${eachFoodItem.id}">delete</button>
     <button class="edit" id="${eachFoodItem.id}">edit</button>
@@ -190,21 +195,22 @@ function displayLoggedFoodData (eachFoodItem) {
     <p>Saturated Fat: <span id="saturated-fat">${eachFoodItem.saturatedFat}</span>g</p>
     <p>Sodium: <span id="sodium">${eachFoodItem.sodium}</span>mg</p>
     <p>Sugar: <span id="sugar">${eachFoodItem.sugars}</span>g</p>
-    <p>Carbohydrates: <span id="carbohydrates">${eachFoodItem.carbohydrate}</span>g</p>
+    <p>Carbohydrates: <span id="carbohydrates">${eachFoodItem.carbohydrates}</span>g</p>
     <p>Total Fat: <span id="total-fat">${eachFoodItem.totalFat}</span>g</p>`;
 }
 
 
 
 
-
+/*
 function totalCalories (foodItems) {
  let sum = 0;
   for (let i = 0; i < foodItems.length; i++) {
    sum += +foodItems[i].calories;
   }
   alert(sum);
-}
+  $('#calorie-sum-here').html(`<p>${sum}</p>`)
+} */
 
 
 
@@ -329,24 +335,23 @@ function editAddedItems (eachFoodItem) {
   return `
 
 
-  <p>Item: <input id="name"placeholder="${eachFoodItem.name}"></input></p>
+  <p>Item: <input id="name" value="${eachFoodItem.name}"></input></p>
     <button class="confirm-changing-personal-item" id="${eachFoodItem.id}">ok</button>
-    <p>Calories: <input type="text" id="calories" placeholder="${eachFoodItem.calories}">${eachFoodItem.calories}</input></p>
-    <p>Cholesterol: <input type="text" id="cholesterol" placeholder="${eachFoodItem.cholesterol}"></input>mg</p>
-    <p>Dietary Fiber: <input type="text" id="dietary-fiber" placeholder="${eachFoodItem.dietaryFiber}"></input>g</p>
-    <p>Protein: <input type="text" id="protein" placeholder="${eachFoodItem.protein}"></input>g</p>
-    <p>Saturated Fat: <input type="text" id="saturated-fat" placeholder="${eachFoodItem.saturatedFat}"></input>g</p>
-    <p>Sodium: <input type="text" id="sodium" placeholder="${eachFoodItem.sodium}"></input>mg</p>
-    <p>Sugar: <input type="text" id="sugar" placeholder="${eachFoodItem.sugars}"></input>g</p>
-    <p>Carbohydrates: <input type="text" id="carbohydrates" placeholder="${eachFoodItem.carbohydrate}"></input>g</p>
-    <p>Total Fat: <input type="text" id="total-fat" placeholder="${eachFoodItem.totalFat}"></input>g</p>`;
+    <p>Calories: <input type="text" id="calories" value="${eachFoodItem.calories}"></input></p>
+    <p>Cholesterol: <input type="text" id="cholesterol" value="${eachFoodItem.cholesterol}"></input>mg</p>
+    <p>Dietary Fiber: <input type="text" id="dietary-fiber" value="${eachFoodItem.dietaryFiber}"></input>g</p>
+    <p>Protein: <input type="text" id="protein" value=${eachFoodItem.protein}></input>g</p>
+    <p>Saturated Fat: <input type="text" id="saturated-fat" value="${eachFoodItem.protein}"></input>g</p>
+    <p>Sodium: <input type="text" id="sodium" value="${eachFoodItem.sodium}"></input>mg</p>
+    <p>Sugar: <input type="text" id="sugar" value="${eachFoodItem.sugars}"></input>g</p>
+    <p>Carbohydrates: <input type="text" id="carbohydrates" value="${eachFoodItem.carbohydrates}"></input>g</p>
+    <p>Total Fat: <input type="text" id="total-fat" value="${eachFoodItem.totalFat}"></input>g</p>`;
 }
 
 $(confirmChangingItem)
 
 function confirmChangingItem () {
   $('#second-page').on('click', '.confirm-changing-personal-item', function(event) {
-    alert("testing put");
     console.log(this.id);
     let customFoodData = {
         name: $(this).parent().find('#name').val(),
@@ -373,7 +378,7 @@ function putRequest (customFoodData, foodId) {
        type: 'PUT', 
        dataType: 'json', 
        contentType: 'application/json; charset= utf-8',
-       success: getLoggedItems
+       success: $('#second-page').html(secondPage())
   }
   $.ajax(settings); 
 }
