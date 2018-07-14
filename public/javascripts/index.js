@@ -19,10 +19,10 @@ function secondPage () {
     <h1 id="name-of-app-two">Calorie Counter!</h1>
     </div>
   </header>
-        <button id="add-own">Add Own Item</button>
+       <button id="add-own">Add Own Item</button>
         <button id="show-logged">Show Logged Food Items</button>
-          <form>
-          <p>search food items here for nutritional information to add to your daily calories</p>
+          <form autocomplete="on">
+          <p id="search-sentence">Search food items here for nutritional information to add to your daily calories</p>
           <label id="labels" for="js-query">Food Item Here:</label>
           <input type="text" id="js-query" name="search" aria-label="search-here" placeholder="enter food here">
           <button id="search-button" type="submit">Search</button>
@@ -261,17 +261,17 @@ function addCustomItem () {
 }
 
 function customAddPage () {
-  return `<p>Item: <input id="name"placeholder="test"></input></p>
-    <button class="confirm-adding-personal-item">ok</button>
-    <p>Calories: <input type="text" id="calories" placeholder="test"></input></p>
-    <p>Cholesterol: <input type="text" id="cholesterol" placeholder="test"></input>mg</p>
-    <p>Dietary Fiber: <input type="text" id="dietary-fiber" placeholder="test"></input>g</p>
-    <p>Protein: <input type="text" id="protein" placeholder="test"></input>g</p>
-    <p>Saturated Fat: <input type="text" id="saturated-fat" placeholder="test"></input>g</p>
-    <p>Sodium: <input type="text" id="sodium" placeholder="test"></input>mg</p>
-    <p>Sugar: <input type="text" id="sugar" placeholder="test"></input>g</p>
-    <p>Carbohydrates: <input type="text" id="carbohydrates" placeholder="test"></input>g</p>
-    <p>Total Fat: <input type="text" id="total-fat" placeholder="test"></input>g</p>`;
+  return `<p>Item: <input id="name"></input></p>
+    <p>Calories: <input type="text" id="calories"></input></p>
+    <p>Cholesterol: <input type="text" id="cholesterol"></input>mg</p>
+    <p>Dietary Fiber: <input type="text" id="dietary-fiber"></input>g</p>
+    <p>Protein: <input type="text" id="protein"></input>g</p>
+    <p>Saturated Fat: <input type="text" id="saturated-fat"></input>g</p>
+    <p>Sodium: <input type="text" id="sodium"></input>mg</p>
+    <p>Sugar: <input type="text" id="sugar"></input>g</p>
+    <p>Carbohydrates: <input type="text" id="carbohydrates"></input>g</p>
+    <p>Total Fat: <input type="text" id="total-fat"></input>g</p>
+    <button class="confirm-adding-personal-item">confirm</button>`;
 }
 
 $(confirmAddingCustomItem)
@@ -290,9 +290,9 @@ function confirmAddingCustomItem () {
         carbohydrates: $(this).parent().find('#carbohydrates').val(),
         totalFat: $(this).parent().find('#total-fat').val()
     }
-    event.preventDefault();
     console.log(customFoodData);
     customPosting(customFoodData); 
+    $('#second-page').html(secondPage());
   })
 }
 
