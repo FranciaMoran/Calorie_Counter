@@ -43,7 +43,7 @@ body {
 
 
 #get-started {
-   border-width: 2px;
+  border-width: 2px;
   border-radius: 10px;
   text-align: center;
   margin-left: auto;
@@ -59,8 +59,8 @@ body {
   font-size: 25px;
   font-family: sans-serif;
   font-weight: 100;
-box-shadow: 0px 1px 4px -2px #333;
-text-shadow: 0px -1px #333;
+  box-shadow: 0px 1px 4px -2px #333;
+  text-shadow: 0px -1px #333;
 }
 
 #get-started:after{
@@ -101,23 +101,23 @@ text-shadow: 0px -1px #333;
 #show-logged {
   font-family: 'Exo', sans-serif;
   margin-right: 30%;
-   display: inline-block; 
-   float: right;
-    border: 1px solid blue;    
-    background-color: yellow; 
-   border-width: 2px;
+  display: inline-block; 
+  float: right;
+  border: 1px solid blue;    
+  background-color: yellow; 
+  border-width: 2px;
   border-radius: 10px;
-     width: 100px;
-     font-size: 15px;
-    height: 60px;
+  width: 100px;
+  font-size: 15px;
+  height: 60px;
   background-color: yellow; 
   background-image: linear-gradient(yellow);
   text-decoration: none;
   color: black;
   font-family: sans-serif;
   font-weight: 100;
-box-shadow: 0px 1px 4px -2px #333;
-text-shadow: 0px -1px #333;
+  box-shadow: 0px 1px 4px -2px #333;
+  text-shadow: 0px -1px #333;
 }
 
 #show-logged:after{
@@ -137,25 +137,26 @@ text-shadow: 0px -1px #333;
 
 #add-own {
   font-family: 'Exo', sans-serif;
-display:  inline-block;
-    padding: 0;
-    border: 1px solid blue;    
-    background-color: yellow; 
-    margin-left: 30%;
-   border-width: 2px;
+  display:  inline-block;
+  margin-left: 30%;
+  padding: 0;
+  border: 1px solid blue;    
+  background-color: yellow; 
+  border-width: 2px;
   border-radius: 10px;
-     width: 100px;
-     font-size: 15px;
-    height: 60px;
+  width: 100px;
+  font-size: 15px;
+  height: 60px;
   background-color: yellow; 
   background-image: linear-gradient(yellow);
   text-decoration: none;
   color: black;
   font-family: sans-serif;
   font-weight: 100;
-box-shadow: 0px 1px 4px -2px #333;
-text-shadow: 0px -1px #333;
+  box-shadow: 0px 1px 4px -2px #333;
+  text-shadow: 0px -1px #333;
 }
+
 
 #add-own:after{
   content: '';
@@ -198,6 +199,15 @@ form {
   border-width: 2px;
   border-color: #000000;
   border-radius: 15px;
+}
+
+.inputs {
+  font-size: 15px;
+  height: 25px;
+  width: 200px;
+  border-width: 1px;
+  border-color: #000000;
+  border-radius: 10px;
 }
 
 #search-button {
@@ -246,6 +256,8 @@ text-shadow: 0px -1px #333;
 }
 
 
+
+
 .confirm-adding-personal-item {
 
   font-size: 15px;
@@ -286,22 +298,35 @@ text-shadow: 0px -1px #333;
   cursor: pointer;
 }
 
+#totals {
+  text-align: center;
+  font-family: 'Exo', sans-serif;
+}
+
+#added-items-title {
+  margin-right: 20%;
+  font-family: 'Exo', sans-serif;
+  width: 50%;
+}
+
 #added-items {
-float: right;
+  display: inline-block;
+  float: right;
   width: 50%;
   font-family: 'Exo', sans-serif;
 }
 
-
-
-
-
-
-
+#nutrition-data-title {
+  font-family: 'Exo', sans-serif;
+  width: 50%;
+  display: inline;
+}
 
 #nutrition-data {
 	width: 50%;
+  font-family: 'Exo', sans-serif;
 }
+
 
 .add {
    display: inline; 
@@ -311,6 +336,32 @@ float: right;
     padding: 5px;
     border: 1px solid blue;    
     background-color: yellow; 
+}
+
+.add:active {
+  background-color: yellow;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+.add:hover {
+  color: blue;
+  cursor: pointer;
+}
+
+.edit {
+    display: inline; 
+   float: right;
+    width: 100px;
+    height: 50px;
+    padding: 5px;
+    border: 1px solid blue;    
+    background-color: yellow;
+}
+
+.edit:hover {
+  color: blue;
+  cursor: pointer;
 }
 
 .delete {
@@ -323,6 +374,11 @@ float: right;
     background-color: yellow; 
 }
 
+.delete:hover {
+  color: blue;
+  cursor: pointer;
+}
+
 #change {
 	display: inline; 
    float: right;
@@ -332,9 +388,6 @@ float: right;
     border: 1px solid blue;    
     background-color: yellow; 
 }
-
-
-
 
 #confirm-change {
 	display: inline; 
