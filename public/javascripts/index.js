@@ -30,13 +30,13 @@ function secondPage () {
               <button id="search-button" type="submit">Search</button>
               <span id="error"></span><br>
             </form>
-          <div id="add-custom"></div>
+            <div id="search-results">
+              <div id="added-items"></div>
+              <div id="nutrition-data-title"></div>
+              <div id="nutrition-data"></div>
+            </div>
           <div id="sums"></div>
-          <br>
-          <div id="added-items-title"></div>
-          <div id="nutrition-data-title"></div>
-          <div id="added-items"></div>
-          <div id="nutrition-data"></div>
+            <div id="added-items-title"></div>
           </div>`;
 }
 
@@ -96,16 +96,19 @@ function getNutritionAPI (queryT) {
 function displayNutritionAPIData (eachItem) {
   return `<div>
             <button class="add">add</button>
+            <b>
             <p id="name">${eachItem.fields.item_name}</p>
-            <p>Calories: <span class="calories">${eachItem.fields.nf_calories}</span></p>
-            <p>Cholesterol: <span id="cholesterol">${eachItem.fields.nf_cholesterol}</span>mg</p>
-            <p>Dietary Fiber: <span id="dietary-fiber">${eachItem.fields.nf_dietary_fiber}</span>g</p>
-            <p>Protein: <span id="protein">${eachItem.fields.nf_protein}</span>g</p>
-            <p>Saturated Fat: <span id="saturated-fat">${eachItem.fields.nf_saturated_fat}</span>g</p>
-            <p>Sodium: <span id="sodium">${eachItem.fields.nf_sodium}</span>mg</p>
-            <p>Sugar: <span id="sugar">${eachItem.fields.nf_sugars}</span>g</p>
-            <p>Carbohydrates: <span id="carbohydrates">${eachItem.fields.nf_total_carbohydrate}</span>g</p>
-            <p>Total Fat: <span id="total-fat">${eachItem.fields.nf_total_fat}</span>g</p>
+            <p>Calories : <span class="calories">${eachItem.fields.nf_calories}</span></p>
+            <p>Cholesterol : <span id="cholesterol">${eachItem.fields.nf_cholesterol}</span>mg</p>
+            <p>Dietary Fiber : <span id="dietary-fiber">${eachItem.fields.nf_dietary_fiber}</span>g</p>
+            <p>Protein : <span id="protein">${eachItem.fields.nf_protein}</span>g</p>
+            <p>Saturated Fat : <span id="saturated-fat">${eachItem.fields.nf_saturated_fat}</span>g</p>
+            <p>Sodium : <span id="sodium">${eachItem.fields.nf_sodium}</span>mg</p>
+            <p>Sugar : <span id="sugar">${eachItem.fields.nf_sugars}</span>g</p>
+            <p>Carbohydrates : <span id="carbohydrates">${eachItem.fields.nf_total_carbohydrate}</span>g</p>
+            <p>Total Fat : <span id="total-fat">${eachItem.fields.nf_total_fat}</span>g</p>
+            </b>
+            <hr>
           </div>`;
 }
 
@@ -181,9 +184,9 @@ function getLoggedItems () {
             resultsHTML += eachFoodItemHTML;
             edit(eachFoodItem)
           }
-          totals(data);
+          //totals(data);
           $('#added-items').html(resultsHTML)
-          $('#added-items-title').html(displayLoggedFoodDataTitle) 
+          //$('#added-items-title').html(displayLoggedFoodDataTitle) 
        }  
   }
   $.ajax(settings);
@@ -202,7 +205,8 @@ function displayLoggedFoodData (eachFoodItem) {
           <p>Sodium: <span id="sodium">${eachFoodItem.sodium}</span>mg</p>
           <p>Sugar: <span id="sugar">${eachFoodItem.sugars}</span>g</p>
           <p>Carbohydrates: <span id="carbohydrates">${eachFoodItem.carbohydrates}</span>g</p>
-          <p>Total Fat: <span id="total-fat">${eachFoodItem.totalFat}</span>g</p>`;
+          <p>Total Fat: <span id="total-fat">${eachFoodItem.totalFat}</span>g</p>
+          `;
 }
 
 function displayLoggedFoodDataTitle () {
@@ -298,12 +302,13 @@ $(addCustomItem)
 
 function addCustomItem () {
   $('#second-page').on('click', '#add-own', function(event) {
-    $('#add-custom').html(customAddPage());
+    $('#search-results').html(customAddPage());
   })
 }
 
 function customAddPage () {
-  return `<p>Item: <input class="inputs" type="text" id="name"></input></p>
+  return `<form id="add-custom">
+          <p>Item: <input class="inputs" type="text" id="name"></input></p>
           <p>Calories: <input class="inputs" type="text" id="calories"></input></p>
           <p>Cholesterol: <input class="inputs" type="text" id="cholesterol"></input>mg</p>
           <p>Dietary Fiber: <input class="inputs" type="text" id="dietary-fiber"></input>g</p>
@@ -313,7 +318,8 @@ function customAddPage () {
           <p>Sugar: <input class="inputs" type="text" id="sugar"></input>g</p>
           <p>Carbohydrates: <input class="inputs" type="text" id="carbohydrates"></input>g</p>
           <p>Total Fat: <input class="inputs" type="text" id="total-fat"></input>g</p>
-          <button class="confirm-adding-personal-item">confirm</button>`;
+          <button class="confirm-adding-personal-item">confirm</button>
+          </form>`;
 }
 
 $(confirmAddingCustomItem)
