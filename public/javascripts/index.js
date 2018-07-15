@@ -2,7 +2,7 @@ const NUTRITION_URL =
 
 `https://api.nutritionix.com/v1_1/search/`;
 
-//////////////////////////////////////////////////
+///////*contains function to return html for the second page*/////////////
 
 $(getStartedButton)
 
@@ -15,29 +15,33 @@ function getStartedButton () {
 function secondPage () {
   return `
           <header id="header-two" role="banner">
-          <div id="black-header-two">
-    <h1 id="name-of-app-two">Calorie Counter!</h1>
-    </div>
-  </header>
-       <button id="add-own">Add Own Item</button>
-        <button id="show-logged">Show Logged Food Items</button>
-          <form autocomplete="on">
-          <p id="search-sentence">Search food items here for nutritional information to add to your daily calories</p>
-          <label id="labels" for="js-query">Food Item Here:</label>
-          <input type="text" id="js-query" name="search" aria-label="search-here" placeholder="enter food here">
-          <button id="search-button" type="submit">Search</button>
-          <span id="error"></span><br>
-          </form>
-         <div id="add-custom"></div>
-         <div id="sums"></div>
-         <br><div id="added-items-title"></div>
-         <div id="nutrition-data-title"></div>
-         <div id="added-items"></div>
-         <div id="nutrition-data"></div>`;
+            <div id="black-header-two">
+              <h1 id="name-of-app-two">Calorie Counter!</h1>
+            </div>
+          </header>
+          <div role="main">
+          <button id="add-own">Add Own Item</button>
+          <button id="show-logged">Show Logged Food Items</button>
+            <form autocomplete="on" aria-live="assertive">
+              <p id="search-sentence">Search food items here for nutritional information to add to your daily calories</p>
+              <label id="labels" for="js-query">Food Item Here:
+              </label>
+              <input type="text" id="js-query" name="search" aria-label="search-here" placeholder="enter food here">
+              <button id="search-button" type="submit">Search</button>
+              <span id="error"></span><br>
+            </form>
+          <div id="add-custom"></div>
+          <div id="sums"></div>
+          <br>
+          <div id="added-items-title"></div>
+          <div id="nutrition-data-title"></div>
+          <div id="added-items"></div>
+          <div id="nutrition-data"></div>
+          </div>`;
 }
 
 
-///////////////////////////////////////////////////////////////////
+////////*api will get nutritional info and display the data*/////////////
 
 $(searchItemsButton)
 
@@ -109,7 +113,7 @@ function displayNutritionAPIData (eachItem) {
 function displayNutritionAPIDataTitle () {
   return `<h2>Nutritional Information:</h2>`; 
 }
-/////////////////////////////////////////////////////////////////////////
+///////////*adds selected api info to logged food*/////////////////////////
 
 $(addingApiItemToDataBase)
 
@@ -153,7 +157,7 @@ function postingApi(foodData) {
 }
 
 
-///////////////////////////////////////////////////////////////////
+//////////////*displays logged food*///////////////////////////
 
 $(showLoggedItems)
 
@@ -187,34 +191,39 @@ function getLoggedItems () {
 
 function displayLoggedFoodData (eachFoodItem) {
    return `
-    <button class="delete" id="${eachFoodItem.id}">delete</button>
-    <button class="edit" id="${eachFoodItem.id}">edit</button>
-    <p id="name">${eachFoodItem.name}</p>
-    <p>Calories: <span class="calories">${eachFoodItem.calories}</span></p>
-    <p>Cholesterol: <span id="cholesterol">${eachFoodItem.cholesterol}</span>mg</p>
-    <p>Dietary Fiber: <span id="dietary-fiber">${eachFoodItem.dietaryFiber}</span>g</p>
-    <p>Protein: <span id="protein">${eachFoodItem.protein}</span>g</p>
-    <p>Saturated Fat: <span id="saturated-fat">${eachFoodItem.saturatedFat}</span>g</p>
-    <p>Sodium: <span id="sodium">${eachFoodItem.sodium}</span>mg</p>
-    <p>Sugar: <span id="sugar">${eachFoodItem.sugars}</span>g</p>
-    <p>Carbohydrates: <span id="carbohydrates">${eachFoodItem.carbohydrates}</span>g</p>
-    <p>Total Fat: <span id="total-fat">${eachFoodItem.totalFat}</span>g</p>`;
+          <button class="delete" id="${eachFoodItem.id}">delete</button>
+          <button class="edit" id="${eachFoodItem.id}">edit</button>
+          <p id="name">${eachFoodItem.name}</p>
+          <p>Calories: <span class="calories">${eachFoodItem.calories}</span></p>
+          <p>Cholesterol: <span id="cholesterol">${eachFoodItem.cholesterol}</span>mg</p>
+          <p>Dietary Fiber: <span id="dietary-fiber">${eachFoodItem.dietaryFiber}</span>g</p>
+          <p>Protein: <span id="protein">${eachFoodItem.protein}</span>g</p>
+          <p>Saturated Fat: <span id="saturated-fat">${eachFoodItem.saturatedFat}</span>g</p>
+          <p>Sodium: <span id="sodium">${eachFoodItem.sodium}</span>mg</p>
+          <p>Sugar: <span id="sugar">${eachFoodItem.sugars}</span>g</p>
+          <p>Carbohydrates: <span id="carbohydrates">${eachFoodItem.carbohydrates}</span>g</p>
+          <p>Total Fat: <span id="total-fat">${eachFoodItem.totalFat}</span>g</p>`;
 }
 
 function displayLoggedFoodDataTitle () {
   return `<h2>Logged Food Items:</h2>`;
 } 
 function displaySums (calorieSum, cholesterolSum, dietaryFiberSum, proteinSum, saturatedFatSum, sodiumSum, sugarsSum, carbohydratesSum, totalFatSum){
-  return `<div id="totals">Totals
-          <p>Total Calories: ${calorieSum}</p>
-          <p>Total Cholesterol: ${cholesterolSum}</p>
-          <p>Total Dietary Fiber: ${dietaryFiberSum}</p>
-          <p>Total Protein: ${proteinSum}</p>
-          <p>Total Saturated Fat: ${saturatedFatSum}</p>
-          <p>Total Sodium: ${sodiumSum}</p>
-          <p>Total Carbohydrates: ${carbohydratesSum}</p>
-          <p>Total Fat: ${totalFatSum}</p>
-          </div>`;
+  var d = new Date(); 
+  d.setMonth(7);      
+  x = d.getMonth();
+    return `
+            <div id="totals">Totals
+              <p>${x}/${new Date().getDate()}/${new Date().getFullYear()}</p>
+              <p>Total Calories: ${calorieSum}</p>
+              <p>Total Cholesterol: ${cholesterolSum}</p>
+              <p>Total Dietary Fiber: ${dietaryFiberSum}</p>
+              <p>Total Protein: ${proteinSum}</p>
+              <p>Total Saturated Fat: ${saturatedFatSum}</p>
+              <p>Total Sodium: ${sodiumSum}</p>
+              <p>Total Carbohydrates: ${carbohydratesSum}</p>
+              <p>Total Fat: ${totalFatSum}</p>
+            </div>`;
 }
 
 
@@ -260,49 +269,30 @@ function totals (foodItems) {
 
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////*deletes logged items*/////////////////////////////////////////
 
 $(deleteItems)
 
 function deleteItems () {
   $('#second-page').on('click', '.delete', function(event){
-      let settings = {
-       url: "/logged/" + this.id,
-       type: 'DELETE',
-       success: function(data) {
-        let resultsHTML = ""
+    let settings = {
+        url: "/logged/" + this.id,
+        type: 'DELETE',
+        success: function(data) {
+          let resultsHTML = ""
           for (let i=0; i < data.length; i++){
             let eachFoodItem = data[i];
             let eachFoodItemHTML = displayLoggedFoodData(eachFoodItem);
             resultsHTML += eachFoodItemHTML;
           }
           $('#added-items').html(resultsHTML)
-       }   
-  }
-  $.ajax(settings); 
+        }   
+    }
+    $.ajax(settings); 
 });
 }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-///////////////////////////////////////////////////////////////
+//////////////////*adds custom item*////////////////
 
 $(addCustomItem)
 
@@ -314,16 +304,16 @@ function addCustomItem () {
 
 function customAddPage () {
   return `<p>Item: <input class="inputs" type="text" id="name"></input></p>
-    <p>Calories: <input class="inputs" type="text" id="calories"></input></p>
-    <p>Cholesterol: <input class="inputs" type="text" id="cholesterol"></input>mg</p>
-    <p>Dietary Fiber: <input class="inputs" type="text" id="dietary-fiber"></input>g</p>
-    <p>Protein: <input class="inputs" type="text" id="protein"></input>g</p>
-    <p>Saturated Fat: <input class="inputs" type="text" id="saturated-fat"></input>g</p>
-    <p>Sodium: <input class="inputs" type="text" id="sodium"></input>mg</p>
-    <p>Sugar: <input class="inputs" type="text" id="sugar"></input>g</p>
-    <p>Carbohydrates: <input class="inputs" type="text" id="carbohydrates"></input>g</p>
-    <p>Total Fat: <input class="inputs" type="text" id="total-fat"></input>g</p>
-    <button class="confirm-adding-personal-item">confirm</button>`;
+          <p>Calories: <input class="inputs" type="text" id="calories"></input></p>
+          <p>Cholesterol: <input class="inputs" type="text" id="cholesterol"></input>mg</p>
+          <p>Dietary Fiber: <input class="inputs" type="text" id="dietary-fiber"></input>g</p>
+          <p>Protein: <input class="inputs" type="text" id="protein"></input>g</p>
+          <p>Saturated Fat: <input class="inputs" type="text" id="saturated-fat"></input>g</p>
+          <p>Sodium: <input class="inputs" type="text" id="sodium"></input>mg</p>
+          <p>Sugar: <input class="inputs" type="text" id="sugar"></input>g</p>
+          <p>Carbohydrates: <input class="inputs" type="text" id="carbohydrates"></input>g</p>
+          <p>Total Fat: <input class="inputs" type="text" id="total-fat"></input>g</p>
+          <button class="confirm-adding-personal-item">confirm</button>`;
 }
 
 $(confirmAddingCustomItem)
@@ -349,21 +339,21 @@ function confirmAddingCustomItem () {
 }
 
 function customPosting (customFoodData) {
-    let settings = {
-       url: "/logged", 
-       type: 'POST', 
-       data: JSON.stringify(customFoodData), 
-       dataType: 'json', 
-       contentType: 'application/json; charset= utf-8', 
-       success: function(data) {
-          let resultsHTML = ""
-          for (let i=0; i < data.length; i++){
-            let eachFoodItem = data[i];
-            let eachFoodItemHTML = displayLoggedFoodData(eachFoodItem);
-            resultsHTML += eachFoodItemHTML;
+  let settings = {
+      url: "/logged", 
+      type: 'POST', 
+      data: JSON.stringify(customFoodData), 
+      dataType: 'json', 
+      contentType: 'application/json; charset= utf-8', 
+      success: function(data) {
+        let resultsHTML = ""
+        for (let i=0; i < data.length; i++){
+          let eachFoodItem = data[i];
+          let eachFoodItemHTML = displayLoggedFoodData(eachFoodItem);
+          resultsHTML += eachFoodItemHTML;
           }
           $('#custom-added-items').html(resultsHTML)
-       }   
+      }   
   }
   $.ajax(settings); 
 }
@@ -379,19 +369,17 @@ function edit (eachFoodItem) {
 function editAddedItems (eachFoodItem) {
 
   return `
-
-
-  <p>Item: <input class="inputs" type="text" id="name" value="${eachFoodItem.name}"></input></p>
-    <button class="confirm-changing-personal-item" id="${eachFoodItem.id}">ok</button>
-    <p>Calories: <input class="inputs" type="text" id="calories" value="${eachFoodItem.calories}"></input></p>
-    <p>Cholesterol: <input class="inputs" type="text" id="cholesterol" value="${eachFoodItem.cholesterol}"></input>mg</p>
-    <p>Dietary Fiber: <input class="inputs" type="text" id="dietary-fiber" value="${eachFoodItem.dietaryFiber}"></input>g</p>
-    <p>Protein: <input class="inputs" type="text" id="protein" value=${eachFoodItem.protein}></input>g</p>
-    <p>Saturated Fat: <input class="inputs" type="text" id="saturated-fat" value="${eachFoodItem.protein}"></input>g</p>
-    <p>Sodium: <input class="inputs" type="text" id="sodium" value="${eachFoodItem.sodium}"></input>mg</p>
-    <p>Sugar: <input class="inputs" type="text" id="sugar" value="${eachFoodItem.sugars}"></input>g</p>
-    <p>Carbohydrates: <input class="inputs" type="text" id="carbohydrates" value="${eachFoodItem.carbohydrates}"></input>g</p>
-    <p>Total Fat: <input class="inputs" type="text" id="total-fat" value="${eachFoodItem.totalFat}"></input>g</p>`;
+          <button class="confirm-changing-personal-item" id="${eachFoodItem.id}">ok</button>
+          <p>Item: <input class="inputs" type="text" id="name" value="${eachFoodItem.name}"></input></p>
+          <p>Calories: <input class="inputs" type="text" id="calories" value="${eachFoodItem.calories}"></input></p>
+          <p>Cholesterol: <input class="inputs" type="text" id="cholesterol" value="${eachFoodItem.cholesterol}"></input>mg</p>
+          <p>Dietary Fiber: <input class="inputs" type="text" id="dietary-fiber" value="${eachFoodItem.dietaryFiber}"></input>g</p>
+          <p>Protein: <input class="inputs" type="text" id="protein" value=${eachFoodItem.protein}></input>g</p>
+          <p>Saturated Fat: <input class="inputs" type="text" id="saturated-fat" value="${eachFoodItem.protein}"></input>g</p>
+          <p>Sodium: <input class="inputs" type="text" id="sodium" value="${eachFoodItem.sodium}"></input>mg</p>
+          <p>Sugar: <input class="inputs" type="text" id="sugar" value="${eachFoodItem.sugars}"></input>g</p>
+          <p>Carbohydrates: <input class="inputs" type="text" id="carbohydrates" value="${eachFoodItem.carbohydrates}"></input>g</p>
+          <p>Total Fat: <input class="inputs" type="text" id="total-fat" value="${eachFoodItem.totalFat}"></input>g</p>`;
 }
 
 $(confirmChangingItem)
@@ -425,157 +413,8 @@ function putRequest (customFoodData, foodId) {
        dataType: 'json', 
        contentType: 'application/json; charset= utf-8',
        success: $('#second-page').html(secondPage())
-  }
-  $.ajax(settings); 
-}
-
-/*
-function displayCustomLoggedFoodData (eachFoodItem) {
-  return `
-    <button class="delete" id="${eachFoodItem.id}">delete</button>
-    <button class="edit" id="${eachFoodItem.id}">edit</button>
-    <p id="name">${eachFoodItem.name}</p>
-    <p>Calories: <span class="calories">${eachFoodItem.calories}</span></p>
-    <p>Cholesterol: <span id="cholesterol">${eachFoodItem.cholesterol}</span>mg</p>
-    <p>Dietary Fiber: <span id="dietary-fiber">${eachFoodItem.dietaryFiber}</span>g</p>
-    <p>Protein: <span id="protein">${eachFoodItem.protein}</span>g</p>
-    <p>Saturated Fat: <span id="saturated-fat">${eachFoodItem.saturatedFat}</span>g</p>
-    <p>Sodium: <span id="sodium">${eachFoodItem.sodium}</span>mg</p>
-    <p>Sugar: <span id="sugar">${eachFoodItem.sugars}</span>g</p>
-    <p>Carbohydrates: <span id="carbohydrates">${eachFoodItem.carbohydrate}</span>g</p>
-    <p>Total Fat: <span id="total-fat">${eachFoodItem.totalFat}</span>g</p>`;
-}
-*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-function editDisplayedFoodData (eachFoodItem) {
-  return `<p id="name">${eachFoodItem.name}</p>
-  <button id="confirm-change">ok</button>
-    <p>Calories: <input type="text" id="calories" placeholder="${eachFoodItem.calories}"></input></p>
-    <p>Cholesterol: <input type="text" id="cholesterol" placeholder="${eachFoodItem.cholesterol}"></input>mg</p>
-    <p>Dietary Fiber: <input type="text" id="dietary-fiber" placeholder="${eachFoodItem.dietaryFiber}"></input>g</p>
-    <p>Protein: <input type="text" id="protein" placeholder="${eachFoodItem.protein}"></input>g</p>
-    <p>Saturated Fat: <input type="text" id="saturated-fat" placeholder="${eachFoodItem.saturatedFat}"></input>g</p>
-    <p>Sodium: <input type="text" id="sodium" placeholder="${eachFoodItem.sodium}"></input>mg</p>
-    <p>Sugar: <input type="text" id="sugar" placeholder="${eachFoodItem.sugars}"></input>g</p>
-    <p>Carbohydrates: <input type="text" id="carbohydrates" placeholder="${eachFoodItem.carbohydrates}"></input>g</p>
-    <p>Total Fat: <input type="text" id="total-fat" placeholder="${eachFoodItem.totalFat}"></input>g</p>`;
+   }
+   $.ajax(settings); 
 }
 
 
-
-/*
-
-function addCustomItem () {
-  $('#add-own').on('click', function(event) {
-    $('#add-custom').html(`<p id="name">test</p>
-    <button class="confirm-change">ok</button>
-    <p>Calories: <input type="text" id="calories" placeholder="test"></input></p>
-    <p>Cholesterol: <input type="text" id="cholesterol" placeholder="test"></input>mg</p>
-    <p>Dietary Fiber: <input type="text" id="dietary-fiber" placeholder="test"></input>g</p>
-    <p>Protein: <input type="text" id="protein" placeholder="test"></input>g</p>
-    <p>Saturated Fat: <input type="text" id="saturated-fat" placeholder="test"></input>g</p>
-    <p>Sodium: <input type="text" id="sodium" placeholder="test"></input>mg</p>
-    <p>Sugar: <input type="text" id="sugar" placeholder="test"></input>g</p>
-    <p>Carbohydrates: <input type="text" id="carbohydrates" placeholder="test"></input>g</p>
-    <p>Total Fat: <input type="text" id="total-fat" placeholder="test"></input>g</p>`)
-  })
-}
-
-function customPosting () {
-    let settings = {
-       url: "/logged", 
-       type: 'POST', 
-       data: JSON.stringify(foodData), 
-       dataType: 'json', 
-       contentType: 'application/json; charset= utf-8', 
-       success: function(data) {
-          let resultsHTML = ""
-          for (let i=0; i < data.length; i++){
-            let eachFoodItem = data[i];
-            let eachFoodItemHTML = displayFoodData(eachFoodItem);
-            resultsHTML += eachFoodItemHTML;
-          }
-          $('#added-items').html(resultsHTML)
-          customAddingToDataBase()
-       }   
-  }
-  $.ajax(settings); 
-}
-
-
-function customAddingToDataBase () {
-  $('#add-custom').on('click', '.confirm-change', function(event){
-    alert("custom add");
-    let customFoodData = {
-      name: ($(this).parent().find('#name').text()),
-      calories: ($(this).parent().find('#calories').text()),
-      cholesterol: ($(this).parent().find('#cholesterol').text()),
-      dietaryFiber: ($(this).parent().find('#dietary-fiber').text()),
-      protein: ($(this).parent().find('#protein').text()),
-      saturatedFat: ($(this).parent().find('#saturated-fat').text()),
-      sodium: ($(this).parent().find('#sodium').text()),
-      sugars: ($(this).parent().find('#sugar').text()),
-      carbohydrates: ($(this).parent().find('#carbohydrates').text()),
-      totalFat: ($(this).parent().find('#total-fat').text())
-    }
-    event.preventDefault();
-    customPosting(customFoodData); 
-  })
-}
-
-*/

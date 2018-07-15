@@ -135,6 +135,12 @@ body {
   cursor: pointer;
 }
 
+#show-logged:active {
+  background-color: yellow;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
 #add-own {
   font-family: 'Exo', sans-serif;
   display:  inline-block;
@@ -174,6 +180,12 @@ body {
   cursor: pointer;
 }
 
+#add-own:active {
+  background-color: yellow;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
 #search-sentence {
   font-family: 'Exo', sans-serif;
   font-size:  20px;
@@ -211,27 +223,23 @@ form {
 }
 
 #search-button {
-
   font-size: 20px;
   height: 40px;
   width: 400px;
   border-color: #000000;
-padding: 0;
- border: 1px solid blue; 
- background-color: yellow; 
-   border-width: 2px;
-    border-radius: 10px;
-     width: 100px;
-     background-color: yellow; 
+  padding: 0;
+  border: 1px solid blue; 
+  background-color: yellow; 
+  border-width: 2px;
+  border-radius: 10px;
+  width: 100px;
+  background-color: yellow; 
   background-image: linear-gradient(yellow);
   text-decoration: none;
-   color: black;
-
+  color: black;
   font-weight: 100;
   box-shadow: 0px 1px 4px -2px #333;
-text-shadow: 0px -1px #333;
- 
- 
+  text-shadow: 0px -1px #333;
   font-family: 'Exo', sans-serif;
 }
 
@@ -250,37 +258,36 @@ text-shadow: 0px -1px #333;
   cursor: pointer;
 }
 
+#search-button:active {
+  background-color: yellow;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
 #add-custom {
    font-family: 'Exo', sans-serif;
    text-align: center;
 }
 
-
-
-
 .confirm-adding-personal-item {
-
-  font-size: 15px;
-  height: 40px;
-  width: 200px;
-  border-color: #000000;
-padding: 0;
- border: 1px solid blue; 
- background-color: yellow; 
+   font-size: 15px;
+   height: 40px;
+   width: 200px;
+   border-color: #000000;
+   padding: 0;
+   border: 1px solid blue; 
+   background-color: yellow; 
    border-width: 2px;
-    border-radius: 10px;
-     width: 100px;
-     background-color: yellow; 
-  background-image: linear-gradient(yellow);
-  text-decoration: none;
+   border-radius: 10px;
+   width: 100px;
+   background-color: yellow; 
+   background-image: linear-gradient(yellow);
+   text-decoration: none;
    color: black;
-
-  font-weight: 100;
-  box-shadow: 0px 1px 4px -2px #333;
-text-shadow: 0px -1px #333;
- 
- 
-  font-family: 'Exo', sans-serif;
+   font-weight: 100;
+   box-shadow: 0px 1px 4px -2px #333;
+   text-shadow: 0px -1px #333; 
+   font-family: 'Exo', sans-serif;
 }
 
 .confirm-adding-personal-item:after{
@@ -296,6 +303,12 @@ text-shadow: 0px -1px #333;
 .confirm-adding-personal-item:hover {
   color: #3366ff;
   cursor: pointer;
+}
+
+.confirm-adding-personal-item:active {
+  background-color: yellow;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
 }
 
 #totals {
@@ -329,13 +342,13 @@ text-shadow: 0px -1px #333;
 
 
 .add {
-   display: inline; 
-   float: right;
-    width: 100px;
-    height: 50px;
-    padding: 5px;
-    border: 1px solid blue;    
-    background-color: yellow; 
+  display: inline; 
+  float: right;
+  width: 100px;
+  height: 50px;
+  padding: 5px;
+  border: 1px solid blue;    
+  background-color: yellow; 
 }
 
 .add:active {
@@ -350,13 +363,13 @@ text-shadow: 0px -1px #333;
 }
 
 .edit {
-    display: inline; 
-   float: right;
-    width: 100px;
-    height: 50px;
-    padding: 5px;
-    border: 1px solid blue;    
-    background-color: yellow;
+  display: inline; 
+  float: right;
+  width: 100px;
+  height: 50px;
+  padding: 5px;
+  border: 1px solid blue;    
+  background-color: yellow;
 }
 
 .edit:hover {
@@ -364,14 +377,20 @@ text-shadow: 0px -1px #333;
   cursor: pointer;
 }
 
+.edit:active {
+  background-color: yellow;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
 .delete {
 	display: inline; 
-   float: right;
-    width: 100px;
-    height: 50px;
-    padding: 5px;
-    border: 1px solid blue;    
-    background-color: yellow; 
+  float: right;
+  width: 100px;
+  height: 50px;
+  padding: 5px;
+  border: 1px solid blue;    
+  background-color: yellow; 
 }
 
 .delete:hover {
@@ -379,24 +398,29 @@ text-shadow: 0px -1px #333;
   cursor: pointer;
 }
 
-#change {
-	display: inline; 
-   float: right;
-   width: 100px;
-    height: 50px;
-    padding: 5px;
-    border: 1px solid blue;    
-    background-color: yellow; 
+.delete:active {
+  background-color: yellow;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
 }
 
-#confirm-change {
-	display: inline; 
-   float: right;
-   width: 100px;
-    height: 50px;
-    padding: 5px;
-    border: 1px solid blue;    
-    background-color: yellow; 
+.confirm-changing-personal-item {
+  display: inline; 
+  float: right;
+  width: 100px;
+  height: 50px;
+  padding: 5px;
+  border: 1px solid blue;    
+  background-color: yellow;
 }
 
- 
+.confirm-changing-personal-item:hover {
+   color: blue;
+  cursor: pointer;
+}
+
+.confirm-changing-personal-item:active {
+  background-color: yellow;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
