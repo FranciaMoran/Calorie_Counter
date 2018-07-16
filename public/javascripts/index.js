@@ -30,16 +30,14 @@ function secondPage () {
               <button id="search-button" type="submit">Search</button>
               <span id="error"></span><br>
             </form>
-            <div id="search-results">
-              <div id="added-items"></div>
-              <div id="nutrition-data-title"></div>
-              <div id="nutrition-data"></div>
+            <div id="all-info">
+            <div id="sums"></div>
+            <div id="titles"></div>
+            <div id="items">
             </div>
-          <div id="sums"></div>
-            <div id="added-items-title"></div>
+            </div>
           </div>`;
 }
-
 
 ////////*api will get nutritional info and display the data*/////////////
 
@@ -86,15 +84,15 @@ function getNutritionAPI (queryT) {
           var eachItemHTML = displayNutritionAPIData(eachItem);
           resultsHTML += eachItemHTML;
           }
-        $('#nutrition-data').html(resultsHTML);
-        $('#nutrition-data-title').html(displayNutritionAPIDataTitle)
+        $('#items').html(resultsHTML);
+        $('#titles').html(displayNutritionAPIDataTitle)
       }
   };
   let result = $.ajax(settings);
 }
 
 function displayNutritionAPIData (eachItem) {
-  return `<div>
+  return `<div id="nutrition-data">
             <button class="add">add</button>
             <b>
             <p id="name">${eachItem.fields.item_name}</p>
@@ -153,7 +151,6 @@ function postingApi(foodData) {
         let eachFoodItemHTML = displayFoodData(eachFoodItem);
         resultsHTML += eachFoodItemHTML;
         }
-    $('#added-items').html(resultsHTML)
     }   
   }
   $.ajax(settings); 
@@ -184,9 +181,9 @@ function getLoggedItems () {
             resultsHTML += eachFoodItemHTML;
             edit(eachFoodItem)
           }
-          //totals(data);
-          $('#added-items').html(resultsHTML)
-          //$('#added-items-title').html(displayLoggedFoodDataTitle) 
+          totals(data);
+          $('#items').html(resultsHTML)
+          $('#titles').html(displayLoggedFoodDataTitle) 
        }  
   }
   $.ajax(settings);
@@ -206,6 +203,7 @@ function displayLoggedFoodData (eachFoodItem) {
           <p>Sugar: <span id="sugar">${eachFoodItem.sugars}</span>g</p>
           <p>Carbohydrates: <span id="carbohydrates">${eachFoodItem.carbohydrates}</span>g</p>
           <p>Total Fat: <span id="total-fat">${eachFoodItem.totalFat}</span>g</p>
+          <hr>
           `;
 }
 
@@ -289,7 +287,7 @@ function deleteItems () {
             let eachFoodItemHTML = displayLoggedFoodData(eachFoodItem);
             resultsHTML += eachFoodItemHTML;
           }
-          $('#added-items').html(resultsHTML)
+          $('#items').html(resultsHTML)
         }   
     }
     $.ajax(settings); 
@@ -302,7 +300,7 @@ $(addCustomItem)
 
 function addCustomItem () {
   $('#second-page').on('click', '#add-own', function(event) {
-    $('#search-results').html(customAddPage());
+    $('#all-info').html(customAddPage());
   })
 }
 
@@ -368,7 +366,7 @@ $(edit)
 
 function edit (eachFoodItem) {
   $('#second-page').on('click', '.edit', function(event){
-    $('#added-items').html(editAddedItems(eachFoodItem))
+    $('#items').html(editAddedItems(eachFoodItem))
   })
 }
 
@@ -392,6 +390,7 @@ $(confirmChangingItem)
 
 function confirmChangingItem () {
   $('#second-page').on('click', '.confirm-changing-personal-item', function(event) {
+    alert(this.id);
     console.log(this.id);
     let customFoodData = {
         name: $(this).parent().find('#name').val(),

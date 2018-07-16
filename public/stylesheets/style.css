@@ -259,32 +259,26 @@ form {
   transform: translateY(4px);
 }
 
-/*
-#add-custom {
-   font-family: 'Exo', sans-serif;
-   text-align: center;
-}*/
-
 .confirm-adding-personal-item {
-   font-size: 15px;
-   height: 40px;
-   width: 200px;
-   border-color: #000000;
-   padding: 0;
-   border: 1px solid blue; 
-   background-color: yellow; 
-   border-width: 2px;
-   border-radius: 10px;
-   width: 100px;
-   background-color: yellow; 
-   background-image: linear-gradient(yellow);
-   text-decoration: none;
-   color: black;
-   font-weight: 100;
-   box-shadow: 0px 1px 4px -2px #333;
-   text-shadow: 0px -1px #333; 
-   font-family: 'Exo', sans-serif;
-   margin-bottom: 20px;
+  font-size: 15px;
+  height: 40px;
+  width: 200px;
+  border-color: #000000;
+  padding: 0;
+  border: 1px solid blue; 
+  background-color: yellow; 
+  border-width: 2px;
+  border-radius: 10px;
+  width: 100px;
+  background-color: yellow; 
+  background-image: linear-gradient(yellow);
+  text-decoration: none;
+  color: black;
+  font-weight: 100;
+  box-shadow: 0px 1px 4px -2px #333;
+  text-shadow: 0px -1px #333; 
+  font-family: 'Exo', sans-serif;
+  margin-bottom: 20px;
 }
 
 .confirm-adding-personal-item:after{
@@ -308,35 +302,41 @@ form {
   transform: translateY(4px);
 }
 
-/*
-#totals {
+#all-info {
+  background-color: #ff8080;
+  margin-top: 5%;
+  margin-bottom: 0;
+  border: none;
+  padding-bottom: 0;
+}
+#sums {
+  font-family: 'Exo', sans-serif;
   text-align: center;
-  font-family: 'Exo', sans-serif;
-}
-
-#added-items-title {
-  margin-right: 20%;
-  font-family: 'Exo', sans-serif;
-  width: 50%;
-}
-
-#added-items {
-  display: inline-block;
-  float: right;
-  width: 50%;
-  font-family: 'Exo', sans-serif;
-}
-*/
-
-#search-results {
-  background-color: #ff8080;
-   margin-left: 20%;
-  margin-right: 20%;
-  margin-top: 10px;
-}
-#nutrition-data-title {
   color: white;
+}
+
+#items {
   background-color: #ff8080;
+  margin-left: 20%;
+  margin-right: 20%;
+  color: white;
+  align-content: center;
+  padding-left: 20px;
+  padding-right: 20px;
+  font-size: 20px;
+  font-family: 'Exo', sans-serif;
+}
+
+
+#titles {
+  width: 60%;
+  border: none;
+  margin-bottom: 0px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-bottom: 0px;
+  background-color: #ff8080;
+  color: white;
   font-size: 35px;
   text-align: center;
   margin-top: 5%;
@@ -344,27 +344,15 @@ form {
   text-align: center;
 }
 
-#nutrition-data {
-  background-color: #ff8080;
-  color: white;
-  align-content: : center;
-   padding-left: 20px;
-   padding-right: 20px;
-   margin-top: 0;
-  font-size: 20px;
-  font-family: 'Exo', sans-serif;
-}
-
 #add-custom {
   background-color: #ff8080;
   color: white;
   padding-top: 20px;
-   margin-left: auto;
-   margin-right: auto;
+  margin-left: auto;
+  margin-right: auto;
   font-size: 20px;
   font-family: 'Exo', sans-serif;
 }
-
 
 hr {
   color: black;
@@ -445,7 +433,7 @@ hr {
 }
 
 .confirm-changing-personal-item:hover {
-   color: blue;
+  color: blue;
   cursor: pointer;
 }
 
