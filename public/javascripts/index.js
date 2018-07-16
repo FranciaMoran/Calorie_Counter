@@ -362,7 +362,7 @@ function customPosting (customFoodData) {
   $.ajax(settings); 
 }
 
-$(edit)
+
 
 function edit (eachFoodItem) {
   $('#second-page').on('click', '.edit', function(event){
@@ -417,9 +417,15 @@ function putRequest (customFoodData, foodId) {
        type: 'PUT', 
        dataType: 'json', 
        contentType: 'application/json; charset= utf-8',
-       success: $('#second-page').html(secondPage())
-   }
-   $.ajax(settings); 
+       success: function(data) {
+          let resultsHTML = ""
+          for (let i=0; i < data.length; i++){
+            let eachFoodItem = data[i];
+            let eachFoodItemHTML = displayLoggedFoodData(eachFoodItem);
+            resultsHTML += eachFoodItemHTML;
+          }
+          $('#items').html(resultsHTML)
+        }   
+    }
+    $.ajax(settings); 
 }
-
-
