@@ -221,7 +221,7 @@ describe('PUT endpoint', function () {
             .send(updateData);
         })
         .then(res => {
-          res.should.have.status(204);
+          res.should.have.status(200);
           return loggedItem.findById(updateData.id);
         })
         .then(post => {
