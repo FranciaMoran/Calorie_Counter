@@ -128,11 +128,6 @@ app.get('/logged/:id', (req, res) => {
 /////////////////////////////////////////////
 
 app.put('/logged/:id', jsonParser, (req, res) => {
-  /*if (!(req.params.id && req.body.id && req.params.id === req.body.id)) {
-    res.status(400).json({
-      error: 'Request path id and request body id values must match'
-    });
-  }*/
 
   const updated = {};
   const updateableFields =  ['name', 'calories', 'cholesterol', 'dietaryFiber', 'protein', 'saturatedFat', 'sodium', 'sugars', 'carbohydrates', 'totalFat'];;
@@ -144,12 +139,20 @@ app.put('/logged/:id', jsonParser, (req, res) => {
 
   loggedItem
     .findByIdAndUpdate(req.params.id, { $set: updated }, { new: true })
-    .then(updatedLog => res.status(204).end())
+
+    .then(updatedLog => { 
+      loggedItem
+        .find()
+        .then(logs => {
+          res.json(logs.map(log => log.serialize()));
+        })
+    })
     .catch(err => res.status(500).json({ message: 'Something went wrong' }));
 });
 
 
 ///////////////////////////////////////////////////////
+/*
 
 app.delete('/:id', (req, res) => {
   loggedItem
@@ -160,7 +163,7 @@ app.delete('/:id', (req, res) => {
     });
 });
 
-
+*/
 //////////////////////////////////////////////////////
 if (require.main === module) {
   runServer().catch(err => console.error(err));

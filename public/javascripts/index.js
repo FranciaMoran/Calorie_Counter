@@ -24,7 +24,7 @@ function secondPage () {
           <button id="show-logged">Show Logged Food Items</button>
             <form autocomplete="on" aria-live="assertive">
               <p id="search-sentence">Search food items here for nutritional information to add to your daily calories</p>
-              <label id="labels" for="js-query">Food Item Here:
+              <label id="labels" for="js-query">Search Food Item Here:
               </label>
               <input type="text" id="js-query" name="search" aria-label="search-here" placeholder="enter food here">
               <button id="search-button" type="submit">Search</button>
@@ -77,7 +77,6 @@ function getNutritionAPI (queryT) {
       dataType: `json`,
       type:`GET`,
       success: function (data){
-        console.log(data);
         var resultsHTML = "";
           for (var i=0; i < data.hits.length; i++){
           var eachItem = data.hits[i];
@@ -179,7 +178,7 @@ function getLoggedItems () {
             let eachFoodItem = data[i];
             let eachFoodItemHTML = displayLoggedFoodData(eachFoodItem);
             resultsHTML += eachFoodItemHTML;
-            edit(eachFoodItem)
+            edit(eachFoodItem, `edit-${eachFoodItem.id}`)
           }
           totals(data);
           $('#items').html(resultsHTML)
@@ -192,7 +191,7 @@ function getLoggedItems () {
 function displayLoggedFoodData (eachFoodItem) {
    return `
           <button class="delete" id="${eachFoodItem.id}">delete</button>
-          <button class="edit" id="${eachFoodItem.id}">edit</button>
+          <button class="edit-${eachFoodItem.id}" id="edit">edit</button>
           <p id="name">${eachFoodItem.name}</p>
           <p>Calories: <span class="calories">${eachFoodItem.calories}</span></p>
           <p>Cholesterol: <span id="cholesterol">${eachFoodItem.cholesterol}</span>mg</p>
@@ -336,7 +335,6 @@ function confirmAddingCustomItem () {
         carbohydrates: $(this).parent().find('#carbohydrates').val(),
         totalFat: $(this).parent().find('#total-fat').val()
     }
-    console.log(customFoodData);
     customPosting(customFoodData); 
     $('#second-page').html(secondPage());
   })
@@ -364,8 +362,8 @@ function customPosting (customFoodData) {
 
 
 
-function edit (eachFoodItem) {
-  $('#second-page').on('click', '.edit', function(event){
+function edit (eachFoodItem, editId) {
+  $('#second-page').on('click', `.${editId}`, function(event){
     $('#items').html(editAddedItems(eachFoodItem))
   })
 }
@@ -390,8 +388,6 @@ $(confirmChangingItem)
 
 function confirmChangingItem () {
   $('#second-page').on('click', '.confirm-changing-personal-item', function(event) {
-    alert(this.id);
-    console.log(this.id);
     let customFoodData = {
         name: $(this).parent().find('#name').val(),
         calories: $(this).parent().find('#calories').val(),
@@ -405,7 +401,6 @@ function confirmChangingItem () {
         totalFat: $(this).parent().find('#total-fat').val()
     }
     event.preventDefault();
-    console.log(customFoodData);
     putRequest(customFoodData, this.id); 
   })
 }
