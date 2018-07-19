@@ -11,9 +11,9 @@ body {
 #name-of-app {
   font-family: 'Exo', sans-serif;
   text-align: center;
-  font-size: 50px;
+  font-size: 60px;
   margin: 0;
-  padding-top: 70px;
+  padding-top: 80px;
   width: 100%;
   color: white;
 }
@@ -22,20 +22,20 @@ body {
   margin: 0px;
   padding: 0px;
   width: 100%;
-  height: 200px;
+  height: 210px;
   background-color:  black;
   position: relative;
-  margin-bottom: 75px;
+  margin-bottom: 85px;
 } 
 
 #first-page-message {
   color: white;
-  font-size: 25px;
+  font-size: 35px;
   text-align: center;
   margin-left: auto;
   margin-right: auto;
   font-family: 'Exo', sans-serif;
-  margin-bottom: 100px
+  margin-bottom: 110px
 }
 
 #get-started {
@@ -45,14 +45,14 @@ body {
   margin-left: auto;
   margin-right: auto;
   display: block;
-  height: 100px;
-  width: 150px;
+  height: 120px;
+  width: 170px;
   position: relative;
   background-color: red; 
   background-image: linear-gradient(red);
   text-decoration: none;
   color: #fff;
-  font-size: 25px;
+  font-size: 35px;
   font-family: sans-serif;
   font-weight: 100;
   box-shadow: 0px 1px 4px -2px #333;
@@ -77,9 +77,9 @@ body {
 #name-of-app-two {
   font-family: 'Exo', sans-serif;
   text-align: center;
-  font-size: 50px;
+  font-size: 60px;
   margin: 0;
-  padding-top: 20px;
+  padding-top: 25px;
   width: 100%;
   color: white;
 }
@@ -88,10 +88,10 @@ body {
   margin: 0px;
   padding: 0px;
   width: 100%;
-  height: 100px;
+  height: 120px;
   background-color:  black;
   position: relative;
-  margin-bottom: 50px;
+  margin-bottom: 75px;
 } 
 
 #show-logged {
@@ -103,9 +103,9 @@ body {
   background-color: yellow; 
   border-width: 2px;
   border-radius: 10px;
-  width: 100px;
-  font-size: 15px;
-  height: 60px;
+  width: 150px;
+  font-size: 25px;
+  height: 110px;
   background-color: yellow; 
   background-image: linear-gradient(yellow);
   text-decoration: none;
@@ -146,9 +146,9 @@ body {
   background-color: yellow; 
   border-width: 2px;
   border-radius: 10px;
-  width: 100px;
-  font-size: 15px;
-  height: 60px;
+  width: 150px;
+  font-size: 25px;
+  height: 110px;
   background-color: yellow; 
   background-image: linear-gradient(yellow);
   text-decoration: none;
@@ -184,7 +184,7 @@ body {
 #search-sentence {
   color: white;
   font-family: 'Exo', sans-serif;
-  font-size:  20px;
+  font-size:  35px;
   display:  block;
   text-align: center;
 }
@@ -198,12 +198,12 @@ form {
    font-family: 'Exo', sans-serif;
    color: white;
    text-align: center;
-   font-size: 25px;
+   font-size: 30px;
 }
 
 #js-query {
   font-size: 25px;
-  height: 40px;
+  height: 45px;
   width: 400px;
   border-width: 2px;
   border-color: #000000;
@@ -211,7 +211,7 @@ form {
 }
 
 .inputs {
-  font-size: 15px;
+  font-size: 20px;
   height: 25px;
   width: 200px;
   border-width: 1px;
@@ -221,8 +221,8 @@ form {
 
 #search-button {
   font-size: 20px;
-  height: 40px;
-  width: 400px;
+  height: 45px;
+  width: 420px;
   border-color: #000000;
   padding: 0;
   border: 1px solid blue; 
@@ -263,7 +263,7 @@ form {
 
 .confirm-adding-personal-item {
   font-size: 15px;
-  height: 40px;
+  height: 45px;
   width: 200px;
   border-color: #000000;
   padding: 0;
@@ -316,6 +316,7 @@ form {
   font-family: 'Exo', sans-serif;
   text-align: center;
   color: white;
+  font-size: 25px;
 }
 
 #items {
@@ -326,7 +327,7 @@ form {
   align-content: center;
   padding-left: 20px;
   padding-right: 20px;
-  font-size: 20px;
+  font-size: 25px;
   font-family: 'Exo', sans-serif;
 }
 
@@ -364,9 +365,11 @@ hr {
 
 .add {
   display: inline; 
+  font-family: 'Exo', sans-serif;
   float: right;
   width: 120px;
-  height: 60px;
+  height: 70px;
+  font-size: 20px;
   padding: 5px;
   border: 1px solid blue;  
   background-color: yellow; 
@@ -385,9 +388,11 @@ hr {
 
 #edit {
   display: inline; 
+  font-family: 'Exo', sans-serif;
+  font-size: 20px;
   float: right;
   width: 100px;
-  height: 50px;
+  height: 70px;
   padding: 5px;
   border: 1px solid blue;    
   background-color: yellow;
@@ -406,9 +411,11 @@ hr {
 
 .delete {
 	display: inline; 
+  font-family: 'Exo', sans-serif;
   float: right;
+  font-size: 20px;
   width: 100px;
-  height: 50px;
+  height: 70px;
   padding: 5px;
   border: 1px solid blue;    
   background-color: yellow; 
