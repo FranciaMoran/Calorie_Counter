@@ -150,7 +150,7 @@ function postingApi(foodData) {
         let eachFoodItemHTML = displayFoodData(eachFoodItem);
         resultsHTML += eachFoodItemHTML;
         }
-        totals(data);///////////////////////
+        getLoggedItems();
     }   
   }
   $.ajax(settings); 
@@ -286,8 +286,8 @@ function deleteItems () {
             let eachFoodItem = data[i];
             let eachFoodItemHTML = displayLoggedFoodData(eachFoodItem);
             resultsHTML += eachFoodItemHTML;
-            totals(data);
           }
+          totals(data);
           $('#items').html(resultsHTML)
         }   
     }
