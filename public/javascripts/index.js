@@ -217,14 +217,14 @@ function displaySums (calorieSum, cholesterolSum, dietaryFiberSum, proteinSum, s
     return `
             <div id="totals">Totals
               <p>${x}/${new Date().getDate()}/${new Date().getFullYear()}</p>
-              <p>Total Calories: ${calorieSum}</p>
-              <p>Total Cholesterol: ${cholesterolSum}</p>
-              <p>Total Dietary Fiber: ${dietaryFiberSum}</p>
-              <p>Total Protein: ${proteinSum}</p>
-              <p>Total Saturated Fat: ${saturatedFatSum}</p>
-              <p>Total Sodium: ${sodiumSum}</p>
-              <p>Total Carbohydrates: ${carbohydratesSum}</p>
-              <p>Total Fat: ${totalFatSum}</p>
+              <p>Total Calories: ${Math.round(calorieSum)}</p>
+              <p>Total Cholesterol: ${Math.round(cholesterolSum)}</p>
+              <p>Total Dietary Fiber: ${Math.round(dietaryFiberSum)}</p>
+              <p>Total Protein: ${Math.round(proteinSum)}</p>
+              <p>Total Saturated Fat: ${Math.round(saturatedFatSum)}</p>
+              <p>Total Sodium: ${Math.round(sodiumSum)}</p>
+              <p>Total Carbohydrates: ${Math.round(carbohydratesSum)}</p>
+              <p>Total Fat: ${Math.round(totalFatSum)}</p>
             </div>`;
 }
 
