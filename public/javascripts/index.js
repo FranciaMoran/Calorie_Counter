@@ -63,7 +63,7 @@ function getNutritionAPI (queryT) {
   let settings = {
       url: NUTRITION_URL + queryT,
       data: {
-      results: `0:05`,
+      results: `0:10`,
       cal_min:0,
       cal_max:50000,
       fields:'item_name,item_id,nf_water_grams,nf_calories,nf_calories_from_fat,nf_total_fat,nf_saturated_fat,nf_trans_fatty_acid,nf_polyunsaturated_fat,nf_monounsaturated_fat,nf_cholesterol,nf_sodium,nf_total_carbohydrate,nf_dietary_fiber,nf_sugars,nf_protein',
